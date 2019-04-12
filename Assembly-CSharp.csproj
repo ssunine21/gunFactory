@@ -60,7 +60,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\UnityStart.cs" />
+    <Compile Include="Assets\Scripts\BulletCtrl.cs" />
+    <Compile Include="Assets\Scripts\FireCtrl.cs" />
+    <Compile Include="Assets\Scripts\PlayerCtrl.cs" />
+    <Compile Include="Assets\Scripts\SmoothFollow.cs" />
     <None Include="Assets\Sci-Fi Styled Modular Pack\Readme.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>G:/gunFactory.git/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
