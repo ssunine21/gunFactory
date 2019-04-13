@@ -20,11 +20,12 @@ public class PlayerCtrl : MonoBehaviour
 	public PlayerAnim playerAnim;
 	public Animation anim;
 
-	private float h = 0.0f;
-	private float v = 0.0f;
+	private float h_Value = 0.0f;
+	private float v_Value = 0.0f;
 
-	private Vector3 moveDir;
+	private Vector3 movement;
 	private Transform playerTr;
+	private Rigidbody playerRigid;
 
 	private Vector3 mousePos;
 
@@ -32,33 +33,37 @@ public class PlayerCtrl : MonoBehaviour
 	private void Awake() {
 		playerTr = GetComponent<Transform>();
 		anim = GetComponent<Animation>();
+		playerRigid = GetComponent<Rigidbody>();
 	}
 
 	private void Start() {
-		anim.clip = playerAnim.idle;
-		anim.Play();
     }
 	
     private void Update() {
-		PlayerMove();
 		PlayerAnimation();
-		MouseMove();
     }
 
-	private void PlayerMove() {
-		h = Input.GetAxis("Horizontal");
-		v = Input.GetAxis("Vertical");
+	private void FixedUpdate() {
+		PlayerMove();
+		MouseMove();
+	}
 
-		moveDir = (Vector3.forward * v) + (Vector3.right * h);
-		playerTr.Translate(moveDir.normalized * moveSpeed * Time.deltaTime, Space.World);
+
+	private void PlayerMove() {
+		h_Value = Input.GetAxis("Horizontal");
+		v_Value = Input.GetAxis("Vertical");
+
+		movement = (Vector3.forward * v_Value) + (Vector3.right * h_Value);
+		playerTr.Translate(movement.normalized * moveSpeed * Time.deltaTime, Space.World);
+
 	}
 
 
 	private void PlayerAnimation() {
-		if (v >= 0.1f) anim.CrossFade(playerAnim.runF.name, 0.3f);
-		else if (v <= -0.1f) anim.CrossFade(playerAnim.runB.name, 0.3f);
-		else if (h >= 0.1f) anim.CrossFade(playerAnim.runR.name, 0.3f);
-		else if (h <= -0.1f) anim.CrossFade(playerAnim.runL.name, 0.3f);
+		if (v_Value >= 0.1f) anim.CrossFade(playerAnim.runF.name, 0.3f);
+		else if (v_Value <= -0.1f) anim.CrossFade(playerAnim.runB.name, 0.3f);
+		else if (h_Value >= 0.1f) anim.CrossFade(playerAnim.runR.name, 0.3f);
+		else if (h_Value <= -0.1f) anim.CrossFade(playerAnim.runL.name, 0.3f);
 		else anim.CrossFade(playerAnim.idle.name, 0.3f);
 	}
 

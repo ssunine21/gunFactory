@@ -16,9 +16,17 @@ namespace UnityStanderdAssets.Utility {
 		[SerializeField]
 		private float heightDamping = 3.0f;
 
+		private Transform cameraTr;
+
+		private void Awake() {
+			cameraTr = GetComponent<Transform>();
+		}
+
+
 		private void Start() {
 
 		}
+
 
 		private void LateUpdate() {
 			if (!target)
@@ -27,8 +35,8 @@ namespace UnityStanderdAssets.Utility {
 			var wantedRotationAngle = target.eulerAngles.y;
 			var wantedHeight = target.position.y + height;
 
-			var currentRotationAngle = transform.eulerAngles.y;
-			var currentHeight = transform.position.y;
+			var currentRotationAngle = cameraTr.eulerAngles.y;
+			var currentHeight = cameraTr.position.y;
 
 			currentRotationAngle = Mathf.LerpAngle(currentRotationAngle, wantedRotationAngle, rotationDamping * Time.deltaTime);
 
@@ -36,15 +44,15 @@ namespace UnityStanderdAssets.Utility {
 
 			var currentRotation = Quaternion.Euler(0, currentRotationAngle, 0);
 
-			transform.position = target.position;
+			cameraTr.position = target.position;
 
 			//Not camera rotate.
 
-			//transform.position -= currentRotation * Vector3.forward * distance;
-			transform.position -= Vector3.forward * distance;
+			//cameraTr.position -= currentRotation * Vector3.forward * distance;
+			cameraTr.position -= Vector3.forward * distance;
 
-			transform.position = new Vector3(transform.position.x, currentHeight, transform.position.z);
-			transform.LookAt(target);
+			cameraTr.position = new Vector3(cameraTr.position.x, currentHeight, cameraTr.position.z);
+			cameraTr.LookAt(target);
 		}
 	}
 }

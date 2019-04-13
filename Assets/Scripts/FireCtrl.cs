@@ -5,10 +5,14 @@ using UnityEngine;
 public class FireCtrl : MonoBehaviour
 {
 	public GameObject bullet;
-	public Transform firePos;
+	public ParticleSystem cartridge = null;
+	public Transform firePosTr;
+
+	private float destoryTime = 2f;
+	private ParticleSystem muzzleFlash;
 
     void Start() {
-        
+		muzzleFlash = firePosTr.GetComponentInChildren<ParticleSystem>();
     }
 	
 
@@ -19,6 +23,11 @@ public class FireCtrl : MonoBehaviour
     }
 
 	private void Fire() {
-		Instantiate(bullet, firePos.position, firePos.rotation);
+		Instantiate(bullet, firePosTr.position, firePosTr.rotation);
+
+		if ( cartridge ) cartridge.Play();
+		if ( muzzleFlash ) muzzleFlash.Play();
+
+		//Destroy(bullet, destoryTime);
 	}
 }
