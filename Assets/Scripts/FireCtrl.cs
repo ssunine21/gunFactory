@@ -8,7 +8,7 @@ public class FireCtrl : MonoBehaviour
 	public ParticleSystem cartridge = null;
 	public Transform firePosTr;
 
-	private float destoryTime = 2f;
+	//private float destoryTime = 2f;
 	private ParticleSystem muzzleFlash;
 
     void Start() {

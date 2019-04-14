@@ -10,8 +10,4 @@ public class BulletCtrl : MonoBehaviour
     void Start() {
 		GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed);
     }
-	
-    void Update() {
-        
-    }
 }
