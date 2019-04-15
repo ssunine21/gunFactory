@@ -70,11 +70,13 @@
     <Compile Include="Assets\EffectExamples\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\fantasySpider\FSP_ContinuousRotation.cs" />
     <Compile Include="Assets\Scripts\BulletCtrl.cs" />
+    <Compile Include="Assets\Scripts\DoorManager.cs" />
     <Compile Include="Assets\Scripts\EnemyAI.cs" />
     <Compile Include="Assets\Scripts\EnemyDamage.cs" />
     <Compile Include="Assets\Scripts\FireCtrl.cs" />
     <Compile Include="Assets\Scripts\MoveAgent.cs" />
     <Compile Include="Assets\Scripts\PlayerCtrl.cs" />
+    <Compile Include="Assets\Scripts\Puzzle.cs" />
     <Compile Include="Assets\Scripts\SmoothFollow.cs" />
     <None Include="Assets\Sci-Fi Styled Modular Pack\Readme.txt" />
     <None Include="Assets\EffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
