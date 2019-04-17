@@ -9,6 +9,7 @@ public class MoveAgent : MonoBehaviour
 	public float patrolSpeed = 2f;
 	public float traceSpeed = 5f;
 
+	private Transform enemyTr;
 	private NavMeshAgent agent;
 
 	private bool _patrolling;
@@ -37,16 +38,16 @@ public class MoveAgent : MonoBehaviour
 	}
 
 	private void Awake() {
+		enemyTr = GetComponent<Transform>();
 		agent = GetComponent<NavMeshAgent>();
-
-		//목적지가 가까워질수록 속도를 줄이는 옵션 비활성화
-		agent.autoBraking = false;
 	}
 
 	private void Start() {
 		agent.speed = patrolSpeed;
-
 		this.patrolling = true;
+
+		//목적지가 가까워질수록 속도를 줄이는 옵션 비활성화
+		agent.autoBraking = false;
 	}
 
 	private void TraceTarget(Vector3 pos) {

@@ -167,11 +167,11 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: 03 - Default
-    second: {fileID: 2100000, guid: 1035394dba39c5b41a002d49c4b0cb88, type: 2}
+    second: {fileID: 2100000, guid: 47351dde973137344860f319b7fd093a, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
-    materialSearch: 1
+    materialSearch: 2
     materialLocation: 0
   animations:
     legacyGenerateAnimations: 4

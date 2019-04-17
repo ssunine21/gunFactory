@@ -60,40 +60,41 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\EffectExamples\Shared\Scripts\DecalDestroyer.cs" />
-    <Compile Include="Assets\EffectExamples\Shared\Scripts\ExtinguishableFire.cs" />
-    <Compile Include="Assets\EffectExamples\Shared\Scripts\GunAim.cs" />
-    <Compile Include="Assets\EffectExamples\Shared\Scripts\GunShoot.cs" />
-    <Compile Include="Assets\EffectExamples\Shared\Scripts\ParticleCollision.cs" />
-    <Compile Include="Assets\EffectExamples\Shared\Scripts\ParticleExamples.cs" />
-    <Compile Include="Assets\EffectExamples\Shared\Scripts\ParticleMenu.cs" />
-    <Compile Include="Assets\EffectExamples\TutorialInfo\Scripts\Readme.cs" />
-    <Compile Include="Assets\fantasySpider\FSP_ContinuousRotation.cs" />
     <Compile Include="Assets\Scripts\BulletCtrl.cs" />
+    <Compile Include="Assets\Scripts\Damaged.cs" />
     <Compile Include="Assets\Scripts\DoorManager.cs" />
     <Compile Include="Assets\Scripts\EnemyAI.cs" />
-    <Compile Include="Assets\Scripts\EnemyDamage.cs" />
+    <Compile Include="Assets\Scripts\EnemyDamaged.cs" />
     <Compile Include="Assets\Scripts\FireCtrl.cs" />
     <Compile Include="Assets\Scripts\MoveAgent.cs" />
     <Compile Include="Assets\Scripts\PlayerCtrl.cs" />
     <Compile Include="Assets\Scripts\Puzzle.cs" />
     <Compile Include="Assets\Scripts\SmoothFollow.cs" />
-    <None Include="Assets\Sci-Fi Styled Modular Pack\Readme.txt" />
-    <None Include="Assets\EffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
+    <Compile Include="Assets\zEffectExamples\Shared\Scripts\DecalDestroyer.cs" />
+    <Compile Include="Assets\zEffectExamples\Shared\Scripts\ExtinguishableFire.cs" />
+    <Compile Include="Assets\zEffectExamples\Shared\Scripts\GunAim.cs" />
+    <Compile Include="Assets\zEffectExamples\Shared\Scripts\GunShoot.cs" />
+    <Compile Include="Assets\zEffectExamples\Shared\Scripts\ParticleCollision.cs" />
+    <Compile Include="Assets\zEffectExamples\Shared\Scripts\ParticleExamples.cs" />
+    <Compile Include="Assets\zEffectExamples\Shared\Scripts\ParticleMenu.cs" />
+    <Compile Include="Assets\zEffectExamples\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\zfantasySpider\FSP_ContinuousRotation.cs" />
+    <None Include="Assets\zSci-Fi Styled Modular Pack\Readme.txt" />
+    <None Include="Assets\zEffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>G:/gunFactory.git/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/xcvbn/Desktop/gunFactory.git/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>G:/gunFactory.git/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/xcvbn/Desktop/gunFactory.git/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>G:/gunFactory.git/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/xcvbn/Desktop/gunFactory.git/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>G:/gunFactory.git/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/xcvbn/Desktop/gunFactory.git/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>G:/gunFactory.git/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>C:/Users/xcvbn/Desktop/gunFactory.git/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.3.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -297,13 +298,13 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.3.12f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>G:/gunFactory.git/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>C:/Users/xcvbn/Desktop/gunFactory.git/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>G:/gunFactory.git/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/xcvbn/Desktop/gunFactory.git/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>G:/gunFactory.git/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>C:/Users/xcvbn/Desktop/gunFactory.git/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.3.12f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

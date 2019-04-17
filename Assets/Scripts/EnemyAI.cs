@@ -10,8 +10,8 @@ public class EnemyAI : MonoBehaviour
 
 	public State state = State.PATRAL;
 
+	private Collider enemyCollider;
 	private MoveAgent moveAgent;
-
 	private Transform playerTr;
 	private Transform enemyTr;
 	private Animator animator;
@@ -28,11 +28,16 @@ public class EnemyAI : MonoBehaviour
 	public float trace_Distance = 5f;
 	public float attack_Delay = 3f;
 	public float die_Delay = 3f;
+	public float attack_Damage = 10f;
+	public float rotSpeed = 10f;
 
 	public bool isDie = false;
 
 	private void Awake() {
+		init = this;
+
 		playerTr = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+		enemyCollider = GetComponent<Collider>();
 		enemyTr = GetComponent<Transform>();
 		moveAgent = GetComponent<MoveAgent>();
 		animator = GetComponent<Animator>();
@@ -55,7 +60,9 @@ public class EnemyAI : MonoBehaviour
 	}
 
 	private void Attack() {
+
 		animator.SetTrigger(hash_isAttack);
+		enemyCollider.isTrigger = false;
 	}
 
 	IEnumerator CheckState() {
@@ -104,4 +111,6 @@ public class EnemyAI : MonoBehaviour
 			}
 		}
 	}
+
+	public static EnemyAI init;
 }

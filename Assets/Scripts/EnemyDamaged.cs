@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyDamage : MonoBehaviour
+public class EnemyDamaged : MonoBehaviour
 {
 	public float hp = 100f;
 	public float bloodEffect_destroyDelay = 1f;
