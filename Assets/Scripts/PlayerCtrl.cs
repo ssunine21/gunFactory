@@ -12,6 +12,10 @@ public class PlayerAnim {
 }
 
 public class PlayerCtrl : MonoBehaviour {
+	private int max_gunIdx = 2;
+
+	public GameObject[] WeaponList;
+
 	delegate void Action();
 
 	public float moveSpeed = 5.0f;
@@ -21,7 +25,9 @@ public class PlayerCtrl : MonoBehaviour {
 	public PlayerAnim playerAnim;
 	public Animator gunChangeAnim;
 	public Animation anim;
-	private int gunChangeIdx = 0;
+
+	[HideInInspector]
+	public int gunChangeIdx = 0;
 
 	private float h_Value = 0.0f;
 	private float v_Value = 0.0f;
@@ -35,10 +41,11 @@ public class PlayerCtrl : MonoBehaviour {
 
 	private Ray ray;
 	private RaycastHit hit;
-	private Vector3 mousePos;
+	private Vector3 mousePos = Vector3.zero;
 
 
 	private void Awake() {
+		init = this;
 		playerTr = GetComponent<Transform>();
 		anim = GetComponent<Animation>();
 		playerRigid = GetComponent<Rigidbody>();
@@ -91,7 +98,9 @@ public class PlayerCtrl : MonoBehaviour {
 	private void MouseMove() {
 		ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		Debug.DrawRay(ray.origin, ray.direction * 100f, Color.green);
-		//if ( Physics.Raycast(ray, out hit, 200f, 1 << 8) ) mousePos = hit.point;
+		if ( Physics.Raycast(ray, out hit, 200f) ) mousePos = hit.point;
+		mousePos = hit.point;
+		mousePos.y = 0;
 
 		Quaternion rot = Quaternion.LookRotation(mousePos - playerTr.position);
 		playerTr.rotation = Quaternion.Slerp(playerTr.rotation, rot, rotSpeed * Time.deltaTime);
@@ -111,20 +120,26 @@ public class PlayerCtrl : MonoBehaviour {
 	private void OnDrawGizmos() {
 		if ( !pointCamera ) return;
 
-		mousePos = pointCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, pointCamera.transform.position.y));
+		//mousePos = pointCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, pointCamera.transform.position.y));
 
-		Gizmos.color = Color.yellow;
-		Gizmos.DrawSphere(mousePos, 1.0f);
+		//Gizmos.color = Color.yellow;
+		//Gizmos.DrawSphere(mousePos, 1.0f);
 
 	}
 	
 	private void Key_E() {
+		if ( gunChangeIdx == max_gunIdx ) return;
 		gunChangeAnim.SetInteger("changeNum", ++gunChangeIdx);
 		gunChangeAnim.SetTrigger("changeTrigger");
+		Debug.Log("E" + gunChangeIdx);
 	}
 	private void Key_Q() {
+		if ( gunChangeIdx == 0 ) return;
 		gunChangeAnim.SetInteger("changeNum", --gunChangeIdx);
 		gunChangeAnim.SetTrigger("changeTrigger");
+		Debug.Log("Q" + gunChangeIdx);
 	}
 
+
+	public static PlayerCtrl init;
 }

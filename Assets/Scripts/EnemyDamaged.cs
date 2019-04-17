@@ -17,7 +17,7 @@ public class EnemyDamaged : MonoBehaviour
 	private void OnCollisionEnter(Collision collision) {
 		if(collision.collider.tag == bulletTeg) {
 			ShowBloodEffect(collision);
-			Destroy(collision.gameObject);
+			collision.gameObject.SetActive(false);
 
 			hp -= collision.gameObject.GetComponent<BulletCtrl>().bulletDamage;
 			
