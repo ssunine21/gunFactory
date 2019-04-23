@@ -20,8 +20,7 @@ public class PlayerCtrl : MonoBehaviour {
 
 	public float moveSpeed = 5.0f;
 	public float rotSpeed = 5.0f;
-
-	public Camera pointCamera = null;
+	
 	public PlayerAnim playerAnim;
 	public Animator gunChangeAnim;
 	public Animation anim;
@@ -41,7 +40,9 @@ public class PlayerCtrl : MonoBehaviour {
 
 	private Ray ray;
 	private RaycastHit hit;
-	private Vector3 mousePos = Vector3.zero;
+
+	[HideInInspector]
+	public Vector3 mousePos = Vector3.zero;
 
 
 	private void Awake() {
@@ -54,7 +55,8 @@ public class PlayerCtrl : MonoBehaviour {
 	private void Start() {
 		keyDic = new Dictionary<KeyCode, Action> {
 			{KeyCode.E, Key_E },
-			{KeyCode.Q, Key_Q }
+			{KeyCode.Q, Key_Q },
+			{KeyCode.R, Key_R }
 		};
 	}
 
@@ -118,8 +120,6 @@ public class PlayerCtrl : MonoBehaviour {
 
 
 	private void OnDrawGizmos() {
-		if ( !pointCamera ) return;
-
 		//mousePos = pointCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, pointCamera.transform.position.y));
 
 		//Gizmos.color = Color.yellow;
@@ -129,15 +129,26 @@ public class PlayerCtrl : MonoBehaviour {
 	
 	private void Key_E() {
 		if ( gunChangeIdx == max_gunIdx ) return;
-		gunChangeAnim.SetInteger("changeNum", ++gunChangeIdx);
-		gunChangeAnim.SetTrigger("changeTrigger");
+
+		ChangeGun(++gunChangeIdx);
 		Debug.Log("E" + gunChangeIdx);
 	}
 	private void Key_Q() {
 		if ( gunChangeIdx == 0 ) return;
-		gunChangeAnim.SetInteger("changeNum", --gunChangeIdx);
-		gunChangeAnim.SetTrigger("changeTrigger");
+
+		ChangeGun(--gunChangeIdx);
 		Debug.Log("Q" + gunChangeIdx);
+	}
+	private void Key_R() {
+		StartCoroutine(FireCtrl.init.Reloading());
+	}
+
+	private void ChangeGun(int changeIdx) {
+		gunChangeAnim.SetInteger("changeNum", changeIdx);
+		gunChangeAnim.SetTrigger("changeTrigger");
+
+		FireCtrl.init.weaponType = (FireCtrl.WeaponType)changeIdx;
+		StartCoroutine(FireCtrl.init.ChangeBullet());
 	}
 
 

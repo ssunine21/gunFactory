@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace UnityStanderdAssets.Utility {
 
@@ -18,6 +20,11 @@ namespace UnityStanderdAssets.Utility {
 
 		private Transform cameraTr;
 
+		//벽 감지를 위한 레이
+		Ray ray;
+		RaycastHit hit;
+
+
 		private void Awake() {
 			cameraTr = GetComponent<Transform>();
 		}
@@ -29,6 +36,12 @@ namespace UnityStanderdAssets.Utility {
 
 
 		private void LateUpdate() {
+			ray = Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(target.position));
+			Debug.DrawRay(ray.origin, ray.direction * 100f, Color.green);
+			//if ( Physics.Raycast(ray, out hit, 200f, 1 << 9) ) hit.transform.
+			//mousePos = hit.point;
+
+
 			if (!target)
 				return;
 
@@ -53,6 +66,7 @@ namespace UnityStanderdAssets.Utility {
 
 			cameraTr.position = new Vector3(cameraTr.position.x, currentHeight, cameraTr.position.z);
 			cameraTr.LookAt(target);
+			
 		}
 	}
 }

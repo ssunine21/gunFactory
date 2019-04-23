@@ -19,7 +19,7 @@ public class EnemyDamaged : MonoBehaviour
 			ShowBloodEffect(collision);
 			collision.gameObject.SetActive(false);
 
-			hp -= collision.gameObject.GetComponent<BulletCtrl>().bulletDamage;
+			hp -= collision.gameObject.GetComponent<GunManager>()._bulletDamage;
 			
 			if (hp <= 0f)
 				GetComponent<EnemyAI>().state = EnemyAI.State.DIE;

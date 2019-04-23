@@ -60,15 +60,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\BulletCtrl.cs" />
     <Compile Include="Assets\Scripts\Damaged.cs" />
     <Compile Include="Assets\Scripts\DoorManager.cs" />
     <Compile Include="Assets\Scripts\EnemyAI.cs" />
     <Compile Include="Assets\Scripts\EnemyDamaged.cs" />
     <Compile Include="Assets\Scripts\FireCtrl.cs" />
+    <Compile Include="Assets\Scripts\FlameGun.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Gun.cs" />
+    <Compile Include="Assets\Scripts\GunManager.cs" />
     <Compile Include="Assets\Scripts\MoveAgent.cs" />
+    <Compile Include="Assets\Scripts\MyGizmos.cs" />
     <Compile Include="Assets\Scripts\PlayerCtrl.cs" />
     <Compile Include="Assets\Scripts\Puzzle.cs" />
+    <Compile Include="Assets\Scripts\ShotGun.cs" />
     <Compile Include="Assets\Scripts\SmoothFollow.cs" />
     <Compile Include="Assets\zEffectExamples\Shared\Scripts\DecalDestroyer.cs" />
     <Compile Include="Assets\zEffectExamples\Shared\Scripts\ExtinguishableFire.cs" />
