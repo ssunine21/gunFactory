@@ -151,6 +151,8 @@ public class FireCtrl : MonoBehaviour
 
 		if ( PlayerCtrl.init.gunChangeIdx == (int)WeaponType.FIREGUN )
 			isFlameBullet = true;
+		else
+			isFlameBullet = false;
 
 		if ( isFlameBullet ) {
 			var obj = Instantiate<GameObject>(bullets[PlayerCtrl.init.gunChangeIdx], firePosTr);

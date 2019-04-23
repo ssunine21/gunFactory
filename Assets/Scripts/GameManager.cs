@@ -38,5 +38,9 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	public void IsGameOver() {
+		isGameOver = !isGameOver;
+	}
+
 	public static GameManager init = null;
 }

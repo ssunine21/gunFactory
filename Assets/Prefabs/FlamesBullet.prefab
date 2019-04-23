@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7223573337119541447}
   - component: {fileID: 4582864197767146130}
   - component: {fileID: 7930273358598480682}
+  - component: {fileID: 8935091712374028569}
   m_Layer: 0
   m_Name: FlamesBullet
   m_TagString: Untagged
@@ -152,7 +153,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3.21
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -268,7 +269,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4532,6 +4533,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff49b91c202f76341ab41e0d93fd332c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8935091712374028569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2630520264308586442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c15540bc34f90e49bfa9581ba588ea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewAngle: 120
+  viewDist: 10
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!1 &8009765350502408820
 GameObject:
   m_ObjectHideFlags: 0
