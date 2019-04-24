@@ -28,6 +28,7 @@ public class FireCtrl : MonoBehaviour
 	public GameObject[] bullets;
 	private ParticleSystem flameBullet;
 	public bool isFlameBullet = false;
+	public bool isShotFlame = false;
 
 	public GameObject gunManager;
 	private List<GameObject> bulletList = new List<GameObject>();
@@ -80,6 +81,7 @@ public class FireCtrl : MonoBehaviour
 		else if ( Input.GetMouseButtonUp(0) ) {
 			PlayerCtrl.init.moveSpeed = origin_moveSpeed;
 			if ( isFlameBullet ) {
+				isShotFlame = false;
 				flameBullet.Stop();
 			}
 		}
@@ -93,7 +95,11 @@ public class FireCtrl : MonoBehaviour
 		currTime = Time.time;
 
 		if ( isFlameBullet ) {
+			isShotFlame = true;
 			flameBullet.Play();
+
+			currBullet--;
+			UpdateBulletText();
 		}
 		else {
 			var _bullet = GetBullet();
@@ -115,11 +121,14 @@ public class FireCtrl : MonoBehaviour
 
 	public IEnumerator Reloading() {
 		isStop = true;
+		flameBullet.Stop();
 
 		yield return new WaitForSeconds(reloadTime);
 
-		foreach(var list in bulletList ) {
-			if ( list.activeSelf ) list.SetActive(false);
+		if ( !isFlameBullet ) {
+			foreach ( var list in bulletList ) {
+				if ( list.activeSelf ) list.SetActive(false);
+			}
 		}
 
 		isStop = false;
@@ -171,9 +180,13 @@ public class FireCtrl : MonoBehaviour
 	}
 
 	private void DestroyPooling() {
-		foreach ( Transform objs in gunManager.transform )
-			GameObject.Destroy(objs.gameObject);
-
+		if ( isFlameBullet ) {
+			GameObject.Destroy(flameBullet.gameObject);
+		}
+		else {
+			foreach ( Transform objs in gunManager.transform )
+				GameObject.Destroy(objs.gameObject);
+		}
 		bulletList.Clear();
 	}
 

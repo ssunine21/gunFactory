@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7223573337119541447}
   - component: {fileID: 4582864197767146130}
   - component: {fileID: 7930273358598480682}
-  - component: {fileID: 8935091712374028569}
   m_Layer: 0
   m_Name: FlamesBullet
   m_TagString: Untagged
@@ -32,6 +31,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7048932382515327157}
+  - {fileID: 2425047480074171623}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -43,15 +43,15 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2630520264308586442}
   serializedVersion: 6
-  lengthInSec: 2
-  simulationSpeed: 1
+  lengthInSec: 1
+  simulationSpeed: 3
   stopAction: 0
   cullingMode: 3
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -528,7 +528,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 0.5
+    angle: 7
     length: 0.65
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -733,7 +733,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 75
+      scalar: 100
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1370,7 +1370,7 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
+          time: 0.6487804
           value: -1
           inSlope: -3.0002873
           outSlope: -3.0002873
@@ -1394,7 +1394,7 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
+          time: 0.64390564
           value: 1
           inSlope: 2.2802186
           outSlope: 2.2802186
@@ -1414,17 +1414,17 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0.37108433
-          value: 0.01098901
-          inSlope: 0
-          outSlope: 0
+          time: 0
+          value: 0.04819691
+          inSlope: -0.012490111
+          outSlope: -0.012490111
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.33333334
+          outWeight: 0.5174149
         - serializedVersion: 3
           time: 1
-          value: 0.5604396
+          value: 0.9627838
           inSlope: 1.4441385
           outSlope: 1.4441385
           tangentMode: 0
@@ -1448,7 +1448,7 @@ ParticleSystem:
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: 0.42857143
+          value: 0.7402017
           inSlope: 1.7195089
           outSlope: 1.7195089
           tangentMode: 0
@@ -2168,7 +2168,7 @@ ParticleSystem:
     x:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 7.6
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -2221,7 +2221,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 4.27
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -2274,7 +2274,7 @@ ParticleSystem:
     z:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 7.63
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -2327,7 +2327,7 @@ ParticleSystem:
     magnitude:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 10
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -2377,7 +2377,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    separateAxis: 0
+    separateAxis: 1
     inWorldSpace: 0
     multiplyDragByParticleSize: 1
     multiplyDragByParticleVelocity: 1
@@ -4533,24 +4533,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff49b91c202f76341ab41e0d93fd332c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8935091712374028569
+--- !u!1 &4793102451293385004
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2425047480074171623}
+  - component: {fileID: 2022925830743301541}
+  m_Layer: 0
+  m_Name: FOV
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2425047480074171623
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4793102451293385004}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: -2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 790192725104311393}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2022925830743301541
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2630520264308586442}
+  m_GameObject: {fileID: 4793102451293385004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c15540bc34f90e49bfa9581ba588ea6, type: 3}
+  m_Script: {fileID: 11500000, guid: 7647062b89a420741b5216574a4487b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewAngle: 120
-  viewDist: 10
-  targetMask:
+  viewRange: 4
+  viewAngle: 50
+  flameGunDamage: 10
+  enemyLayer:
     serializedVersion: 2
     m_Bits: 1024
-  obstacleMask:
+  obstacleLayer:
     serializedVersion: 2
     m_Bits: 2048
 --- !u!1 &8009765350502408820
@@ -4601,7 +4633,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1

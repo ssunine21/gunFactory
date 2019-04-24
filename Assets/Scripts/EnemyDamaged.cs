@@ -14,15 +14,16 @@ public class EnemyDamaged : MonoBehaviour
 		bloodEffect = Resources.Load<GameObject>("BulletImpactFleshBigEffect");
 	}
 
+	private void Update() {
+		if ( hp <= 0f )
+			GetComponent<EnemyAI>().state = EnemyAI.State.DIE;
+	}
+
 	private void OnCollisionEnter(Collision collision) {
 		if(collision.collider.tag == bulletTeg) {
 			ShowBloodEffect(collision);
 			collision.gameObject.SetActive(false);
-
 			hp -= collision.gameObject.GetComponent<GunManager>()._bulletDamage;
-			
-			if (hp <= 0f)
-				GetComponent<EnemyAI>().state = EnemyAI.State.DIE;
 		}
 	}
 

@@ -5,7 +5,6 @@ using UnityEngine;
 public class FlameGun : GunManager {
 
 	protected override void Awake() {
-		_bulletDamage = 20f;
 
 		rid = GetComponent<Rigidbody>();
 		bulletTr = GetComponent<Transform>();
@@ -17,4 +16,5 @@ public class FlameGun : GunManager {
 
 		//rid.Sleep();
 	}
+
 }

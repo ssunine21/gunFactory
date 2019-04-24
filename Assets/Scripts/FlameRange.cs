@@ -5,6 +5,8 @@ using UnityEngine;
 public class FlameRange : MonoBehaviour {
 	public float viewAngle = 80f;
 	public float viewDist = 10f;
+	public Vector3 viewPosition = -Vector3.forward;
+
 
 	public LayerMask targetMask;
 	public LayerMask obstacleMask;
@@ -13,6 +15,7 @@ public class FlameRange : MonoBehaviour {
 
 	private void Awake() {
 		_transform = GetComponent<Transform>();
+		_transform.position -= viewPosition;
 	}
 
 	private void Update() {

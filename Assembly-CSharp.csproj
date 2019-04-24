@@ -61,12 +61,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Damaged.cs" />
+    <Compile Include="Assets\Scripts\Door.cs" />
     <Compile Include="Assets\Scripts\DoorManager.cs" />
     <Compile Include="Assets\Scripts\EnemyAI.cs" />
     <Compile Include="Assets\Scripts\EnemyDamaged.cs" />
     <Compile Include="Assets\Scripts\FireCtrl.cs" />
     <Compile Include="Assets\Scripts\FlameGun.cs" />
+    <Compile Include="Assets\Scripts\FlameGunFOV.cs" />
     <Compile Include="Assets\Scripts\FlameRange.cs" />
+    <Compile Include="Assets\Scripts\FOVEditor.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Gun.cs" />
     <Compile Include="Assets\Scripts\GunManager.cs" />
