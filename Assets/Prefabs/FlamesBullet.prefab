@@ -4576,8 +4576,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7647062b89a420741b5216574a4487b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRange: 4
-  viewAngle: 50
+  viewRange: 5
+  viewAngle: 61
   flameGunDamage: 10
   enemyLayer:
     serializedVersion: 2
