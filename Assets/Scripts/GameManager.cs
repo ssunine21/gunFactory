@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 	}
 
 	private void Start() {
-		enemy_spawnPoint = GameObject.Find("SpawnPointGroup").GetComponentsInChildren<Transform>();
+		//enemy_spawnPoint = GameObject.Find("SpawnPointGroup").GetComponentsInChildren<Transform>();
 		StartCoroutine(SpawnEnemy());
 		maxEnemy = enemy_spawnPoint.Length - 1;
 	}
