@@ -100,7 +100,7 @@ public class PlayerCtrl : MonoBehaviour {
 	private void MouseMove() {
 		ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		Debug.DrawRay(ray.origin, ray.direction * 200f, Color.green);
-		if ( Physics.Raycast(ray, out hit, 100f) ) mousePos = hit.point;
+		if ( Physics.Raycast(ray, out hit, 300f) ) mousePos = hit.point;
 		mousePos = hit.point;
 		mousePos.y = 0;
 
