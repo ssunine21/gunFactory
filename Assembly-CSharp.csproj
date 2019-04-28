@@ -643,13 +643,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="LobbyAD.csproj">
-      <Project>{7922C22B-E053-CB72-ED23-1B545CCEE2DD}</Project>
-      <Name>LobbyAD</Name>
-    </ProjectReference>
     <ProjectReference Include="MainAD.csproj">
       <Project>{B4D3C5E7-646B-0DCA-0D03-35FA4900A822}</Project>
       <Name>MainAD</Name>
+    </ProjectReference>
+    <ProjectReference Include="LobbyAD.csproj">
+      <Project>{7922C22B-E053-CB72-ED23-1B545CCEE2DD}</Project>
+      <Name>LobbyAD</Name>
     </ProjectReference>
     <ProjectReference Include="PlayAD.csproj">
       <Project>{CD56F27B-8812-255F-B94A-5E3485B8F8BD}</Project>

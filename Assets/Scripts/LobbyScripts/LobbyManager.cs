@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class LobbyManager : MonoBehaviour
 {
 	public Transform targetTr = null;
 	public float rotSpeed = 2f;
+	public GameObject LeftPanel = null;
 
 	[HideInInspector]
 	public bool isMouseButton_down = false;

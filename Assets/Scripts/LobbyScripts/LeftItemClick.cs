@@ -3,22 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-public enum ITEMGROUP { SecondWP = 0, MainWP, SubItem };
-
-[System.Serializable]
-public struct GunInfo {
+public class LeftItemClick : MonoBehaviour {
 	public ITEMGROUP itemGroup;
-	public string text;
-	public float damage;
-	public float shot_Spacing;
-	public float maxbullet;
-	public float reloadtime;
-}
-
-public class ItemClick : MonoBehaviour
-{
-	public GunInfo[] gunInfo;
 	public GameObject itemObj = null;
 	public Color changedColor = Color.white;
 	public GameObject leftPanel = null;
@@ -38,10 +24,7 @@ public class ItemClick : MonoBehaviour
 	}
 
 	private void OnMouseDown() {
-		if ( !leftPanel.activeSelf )
-			leftPanel.SetActive(true);
 
-		LeftPanel.init.ChangeItemGroup(gunInfo);
 	}
 
 	private void OnMouseEnter() {
@@ -54,5 +37,5 @@ public class ItemClick : MonoBehaviour
 		itemImage.color = currColor;
 		itemRect.localScale = Vector3.one;
 	}
-	
+
 }
