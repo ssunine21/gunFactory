@@ -11,4 +11,8 @@ public class SceneChange : MonoBehaviour {
 	public void ChangeToMainScene() {
 		SceneManager.LoadScene("MainScene");
 	}
+
+	public void ChangeToLobbyScene() {
+		SceneManager.LoadScene("LobbyScene");
+	}
 }

@@ -208,7 +208,7 @@ RectTransform:
   m_GameObject: {fileID: 5985213032471412283}
   m_LocalRotation: {x: -0, y: -0, z: -0.2588186, w: 0.965926}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0000306, y: 1.0000306, z: 1.0000306}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5985213032884918554}
   m_RootOrder: 1
@@ -372,7 +372,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4a8d52fe55b38a418d5f28dbf3a551e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemGroup: 0
+  gunInfo: []
+  nameText: {fileID: 0}
+  itemImage: []
+  sprites: []
+  _damage: {fileID: 0}
+  _speed: {fileID: 0}
+  _volum: {fileID: 0}
+  _reload: {fileID: 0}
 --- !u!1001 &5985213032781600562
 PrefabInstance:
   m_ObjectHideFlags: 0

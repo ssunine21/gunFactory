@@ -4,37 +4,39 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class LeftItemClick : MonoBehaviour {
-	public ITEMGROUP itemGroup;
-	public GameObject itemObj = null;
-	public Color changedColor = Color.white;
-	public GameObject leftPanel = null;
 
-	private Color currColor;
-	private Image itemImage;
+	public int idx = 0;
+
 	private RectTransform itemRect;
+	private Quaternion currRotation;
 
 	private void Start() {
-		if ( itemObj == null ) itemObj = this.gameObject;
+		itemRect = GetComponent<RectTransform>();
+		currRotation = itemRect.rotation;
+	}
 
-		itemImage = itemObj.GetComponent<Image>();
-		itemRect = itemObj.GetComponent<RectTransform>();
-
-
-		currColor = itemImage.color;
+	private void Update() {
+		if ( LeftPanel.init.idx == idx ) {
+			itemRect.Rotate(0, -1, 0, Space.World);
+		}
+		else {
+			itemRect.rotation = currRotation;
+		}
 	}
 
 	private void OnMouseDown() {
-
+		LeftPanel.init.ChangeItemValue(idx);
+		itemRect.localScale = Vector3.one;
 	}
 
 	private void OnMouseEnter() {
-		if ( LobbyManager.init.isMouseButton_down ) return;
-		itemImage.color = changedColor;
+		if ( LobbyManager.init.isMouseButton_down && LeftPanel.init.idx == idx) return;
 		itemRect.localScale = new Vector3(1.04f, 1.04f, 1.04f);
 	}
 
 	private void OnMouseExit() {
-		itemImage.color = currColor;
+		if ( LeftPanel.init.idx == idx ) return;
+
 		itemRect.localScale = Vector3.one;
 	}
 
