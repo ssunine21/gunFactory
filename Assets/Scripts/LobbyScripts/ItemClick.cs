@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public enum ITEMGROUP { SecondWP = 0, MainWP, SubItem };
-
 [System.Serializable]
 public struct GunInfo {
 	public ITEMGROUP itemGroup;

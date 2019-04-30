@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
+public enum ITEMGROUP { SecondWP = 0, MainWP, SubItem };
 
 public class LobbyManager : MonoBehaviour
 {
+	public GameObject[] itemMounting;
 	public Transform targetTr = null;
 	public float rotSpeed = 2f;
 	public GameObject LeftPanel = null;
@@ -29,6 +32,18 @@ public class LobbyManager : MonoBehaviour
 
 		else if ( Input.GetMouseButtonUp(0) )
 			isMouseButton_down = false;
+	}
+
+	public void ChangeImage(ITEMGROUP itemGroup, Image image) {
+		switch ( itemGroup ) {
+			case ITEMGROUP.SecondWP:
+				
+				break;
+			case ITEMGROUP.MainWP:
+				break;
+			case ITEMGROUP.SubItem:
+				break;
+		}
 	}
 
 	public static LobbyManager init = null;

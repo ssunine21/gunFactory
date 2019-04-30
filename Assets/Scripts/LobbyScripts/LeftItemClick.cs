@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class LeftItemClick : MonoBehaviour {
 
 	public int idx = 0;
+	public ITEMGROUP itemGroup;
 
 	private RectTransform itemRect;
 	private Quaternion currRotation;
@@ -26,6 +27,7 @@ public class LeftItemClick : MonoBehaviour {
 
 	private void OnMouseDown() {
 		LeftPanel.init.ChangeItemValue(idx);
+		LobbyManager.init.ChangeImage(itemGroup, this.GetComponent<Image>());
 		itemRect.localScale = Vector3.one;
 	}
 
