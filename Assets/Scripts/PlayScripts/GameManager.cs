@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+	public Sprite[] gunSprite;
 	public Transform[] enemy_spawnPoint;
 	public GameObject enemy;
+	public GameObject gunBackground;
+	public Image mainWeapon_Image;
 	public float reSpawn = 2f;
 
 	private int maxEnemy = 0;
@@ -41,6 +45,13 @@ public class GameManager : MonoBehaviour
 
 	public void IsGameOver() {
 		isGameOver = !isGameOver;
+	}
+
+	public void ChangeGunBoxSprite(int idx) {
+		gunBackground.GetComponent<Image>().sprite = gunSprite[idx];
+		mainWeapon_Image.sprite =  gunBackground.transform.GetChild(idx).GetComponent<Image>().sprite;
+
+		//UI.transform.GetChild(idx).GetComponent<Image>().sprite = gunSprite[idx];
 	}
 
 	public static GameManager init = null;

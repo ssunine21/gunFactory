@@ -27,7 +27,8 @@ public class LeftItemClick : MonoBehaviour {
 
 	private void OnMouseDown() {
 		LeftPanel.init.ChangeItemValue(idx);
-		LobbyManager.init.ChangeImage(itemGroup, this.GetComponent<Image>());
+		LobbyManager.init.ChangeImage(itemGroup, this.GetComponent<Image>().sprite);
+
 		itemRect.localScale = Vector3.one;
 	}
 

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public enum ITEMGROUP { SecondWP = 0, MainWP, SubItem };
 
 public class LobbyManager : MonoBehaviour
@@ -34,16 +33,8 @@ public class LobbyManager : MonoBehaviour
 			isMouseButton_down = false;
 	}
 
-	public void ChangeImage(ITEMGROUP itemGroup, Image image) {
-		switch ( itemGroup ) {
-			case ITEMGROUP.SecondWP:
-				
-				break;
-			case ITEMGROUP.MainWP:
-				break;
-			case ITEMGROUP.SubItem:
-				break;
-		}
+	public void ChangeImage(ITEMGROUP itemGroup, Sprite spriteImage) {
+		itemMounting[(int)itemGroup].GetComponent<Transform>().Find("item").GetComponent<Image>().sprite = spriteImage;
 	}
 
 	public static LobbyManager init = null;

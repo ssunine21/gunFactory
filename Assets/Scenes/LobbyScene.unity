@@ -222,6 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idx: 0
+  itemGroup: 0
 --- !u!1001 &302820952
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -491,6 +492,12 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1047060868}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &706450916 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6512310810126976604, guid: c878dcf61c39a9541bc18c1ff04917b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 6512310811802580543}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &709947802
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,6 +591,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idx: 1
+  itemGroup: 0
+--- !u!1 &834005952 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6512310810126976604, guid: c878dcf61c39a9541bc18c1ff04917b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1047060868}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &945177616 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9178460641799544485, guid: 4d332fe4af1e5794192e408652c25a9f,
@@ -931,7 +945,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10fe62f00777314baf32079bbc6abf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemGroup: 0
+  itemMounting:
+  - {fileID: 706450916}
+  - {fileID: 1241108339}
+  - {fileID: 834005952}
   targetTr: {fileID: 1111918180}
   rotSpeed: 2
   LeftPanel: {fileID: 0}
@@ -1213,7 +1230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10fe62f00777314baf32079bbc6abf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemGroup: 0
+  itemMounting: []
   targetTr: {fileID: 1111918180}
   rotSpeed: 5
   LeftPanel: {fileID: 0}
@@ -1353,6 +1370,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1224900453}
   m_CullTransparentMesh: 0
+--- !u!1 &1241108339 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6512310810126976604, guid: c878dcf61c39a9541bc18c1ff04917b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 986982768}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1252308995 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9178460640869189100, guid: 4d332fe4af1e5794192e408652c25a9f,
@@ -1535,6 +1558,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5985213032884918555, guid: 4d332fe4af1e5794192e408652c25a9f,
         type: 3}
+      propertyPath: itemImages.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5985213032884918555, guid: 4d332fe4af1e5794192e408652c25a9f,
+        type: 3}
       propertyPath: sprites.Array.data[0]
       value: 
       objectReference: {fileID: 21300000, guid: 7d50ec18f10d8dc4aaa1a478f3242e08,
@@ -1592,6 +1620,16 @@ PrefabInstance:
       propertyPath: _reload
       value: 
       objectReference: {fileID: 1964038774}
+    - target: {fileID: 5985213032884918555, guid: 4d332fe4af1e5794192e408652c25a9f,
+        type: 3}
+      propertyPath: itemImages.Array.data[0]
+      value: 
+      objectReference: {fileID: 248565214}
+    - target: {fileID: 5985213032884918555, guid: 4d332fe4af1e5794192e408652c25a9f,
+        type: 3}
+      propertyPath: itemImages.Array.data[1]
+      value: 
+      objectReference: {fileID: 711747131}
     - target: {fileID: 5985213031655937212, guid: 4d332fe4af1e5794192e408652c25a9f,
         type: 3}
       propertyPath: m_SizeDelta.x

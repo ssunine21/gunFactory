@@ -61,6 +61,7 @@ public class FireCtrl : MonoBehaviour
 	void Start() {
 		currTime = Time.time;
 		muzzleFlash = firePosTr.GetComponentInChildren<ParticleSystem>();
+		flameBullet = bullets[(int)WeaponType.FIREGUN].GetComponent<ParticleSystem>();
 		currBullet = maxBullet;
 
 		origin_moveSpeed = PlayerCtrl.init.moveSpeed;
@@ -138,7 +139,6 @@ public class FireCtrl : MonoBehaviour
 
 	public IEnumerator ChangeBullet() {
 		isStop = true;
-
 		yield return new WaitForSeconds(changingBulletTime);
 		DestroyPooling();
 		CreatePooling();
@@ -158,18 +158,15 @@ public class FireCtrl : MonoBehaviour
 			return;
 		}
 
-		if ( PlayerCtrl.init.gunChangeIdx == (int)WeaponType.FIREGUN )
+		if ( PlayerCtrl.init.gunChangeIdx == (int)WeaponType.FIREGUN ) {
 			isFlameBullet = true;
-		else
-			isFlameBullet = false;
-
-		if ( isFlameBullet ) {
 			var obj = Instantiate<GameObject>(bullets[PlayerCtrl.init.gunChangeIdx], firePosTr);
 			flameBullet = obj.GetComponent<ParticleSystem>();
 			flameBullet.Stop();
 			bulletList.Add(obj);
 		}
 		else {
+			isFlameBullet = false;
 			for ( int i = 0; i < maxBullet; ++i ) {
 				var obj = Instantiate<GameObject>(bullets[PlayerCtrl.init.gunChangeIdx], gunManager.transform);
 				obj.SetActive(false);

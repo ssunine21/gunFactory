@@ -12,9 +12,6 @@ public class PlayerAnim {
 }
 
 public class PlayerCtrl : MonoBehaviour {
-	private int max_gunIdx = 2;
-
-	public GameObject[] WeaponList;
 
 	delegate void Action();
 
@@ -22,7 +19,6 @@ public class PlayerCtrl : MonoBehaviour {
 	public float rotSpeed = 5.0f;
 	
 	public PlayerAnim playerAnim;
-	public Animator gunChangeAnim;
 	public Animation anim;
 
 	[HideInInspector]
@@ -54,8 +50,9 @@ public class PlayerCtrl : MonoBehaviour {
 
 	private void Start() {
 		keyDic = new Dictionary<KeyCode, Action> {
-			{KeyCode.E, Key_E },
-			{KeyCode.Q, Key_Q },
+			{KeyCode.Alpha1, Key_1 },
+			{KeyCode.Alpha2, Key_2 },
+			{KeyCode.Alpha3, Key_3 },
 			{KeyCode.R, Key_R }
 		};
 	}
@@ -127,25 +124,34 @@ public class PlayerCtrl : MonoBehaviour {
 
 	}
 	
-	private void Key_E() {
-		if ( gunChangeIdx == max_gunIdx ) return;
-
-		ChangeGun(++gunChangeIdx);
-		Debug.Log("E" + gunChangeIdx);
-	}
-	private void Key_Q() {
+	private void Key_1() {
 		if ( gunChangeIdx == 0 ) return;
 
-		ChangeGun(--gunChangeIdx);
-		Debug.Log("Q" + gunChangeIdx);
+		gunChangeIdx = 0;
+		GameManager.init.ChangeGunBoxSprite(gunChangeIdx);
+		Debug.Log("1");
+	}
+	private void Key_2() {
+		if ( gunChangeIdx == 1 ) return;
+
+		gunChangeIdx = 1;
+		FireCtrl.init.ChangeBullet();
+		GameManager.init.ChangeGunBoxSprite(gunChangeIdx);
+		Debug.Log("2");
+	}
+	private void Key_3() {
+		if ( gunChangeIdx == 2 ) return;
+
+		gunChangeIdx = 2;
+		FireCtrl.init.ChangeBullet();
+		GameManager.init.ChangeGunBoxSprite(gunChangeIdx);
+		Debug.Log("3");
 	}
 	private void Key_R() {
 		StartCoroutine(FireCtrl.init.Reloading());
 	}
 
 	private void ChangeGun(int changeIdx) {
-		gunChangeAnim.SetInteger("changeNum", changeIdx);
-		gunChangeAnim.SetTrigger("changeTrigger");
 
 		FireCtrl.init.weaponType = (FireCtrl.WeaponType)changeIdx;
 		StartCoroutine(FireCtrl.init.ChangeBullet());

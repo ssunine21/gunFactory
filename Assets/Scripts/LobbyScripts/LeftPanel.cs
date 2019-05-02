@@ -17,7 +17,7 @@ public class LeftPanel : MonoBehaviour
 
 	public GunInfo[] gunInfo;
 	public Text nameText = null;
-	public GameObject[] itemImage;
+	public GameObject[] itemImages;
 	public Sprite[] sprites;
 
 	public Image _damage;
@@ -39,27 +39,39 @@ public class LeftPanel : MonoBehaviour
 
 		switch ( gunInfo[0].itemGroup ) {
 			case ITEMGROUP.SecondWP:
-				itemImage[0].GetComponent<Image>().sprite = sprites[(int)SPRITE.gun];
-				itemImage[0].GetComponent<Image>().SetNativeSize();
-				itemImage[1].SetActive(false);
+				SetItemGroup(ITEMGROUP.SecondWP);
+
+				itemImages[0].GetComponent<Image>().sprite = sprites[(int)SPRITE.gun];
+				itemImages[0].GetComponent<Image>().SetNativeSize();
+				itemImages[1].SetActive(false);
 				break;
 
 			case ITEMGROUP.MainWP:
-				if ( !itemImage[1].activeSelf ) itemImage[1].SetActive(true);
-				itemImage[0].GetComponent<Image>().sprite = sprites[(int)SPRITE.shotgun];
-				itemImage[0].GetComponent<Image>().SetNativeSize();
-				itemImage[1].GetComponent<Image>().sprite = sprites[(int)SPRITE.flamegun];
-				itemImage[1].GetComponent<Image>().SetNativeSize();
+				SetItemGroup(ITEMGROUP.MainWP);
+
+				if ( !itemImages[1].activeSelf ) itemImages[1].SetActive(true);
+				itemImages[0].GetComponent<Image>().sprite = sprites[(int)SPRITE.shotgun];
+				itemImages[0].GetComponent<Image>().SetNativeSize();
+				itemImages[1].GetComponent<Image>().sprite = sprites[(int)SPRITE.flamegun];
+				itemImages[1].GetComponent<Image>().SetNativeSize();
 				break;
 
 			case ITEMGROUP.SubItem:
-				if ( !itemImage[1].activeSelf ) itemImage[1].SetActive(true);
-				itemImage[0].GetComponent<Image>().sprite = sprites[(int)SPRITE.healpack];
-				itemImage[0].GetComponent<Image>().SetNativeSize();
-				itemImage[1].GetComponent<Image>().sprite = sprites[(int)SPRITE.healpack];
-				itemImage[1].GetComponent<Image>().SetNativeSize();
+				SetItemGroup(ITEMGROUP.SubItem);
+
+				if ( !itemImages[1].activeSelf ) itemImages[1].SetActive(true);
+				itemImages[0].GetComponent<Image>().sprite = sprites[(int)SPRITE.healpack];
+				itemImages[0].GetComponent<Image>().SetNativeSize();
+				itemImages[1].GetComponent<Image>().sprite = sprites[(int)SPRITE.healpack];
+				itemImages[1].GetComponent<Image>().SetNativeSize();
 				//itemImage[1].SetActive(false);
 				break;
+		}
+	}
+
+	private void SetItemGroup(ITEMGROUP itemGroup) {
+		foreach(var itemImage in itemImages ) {
+			itemImage.GetComponent<LeftItemClick>().itemGroup = itemGroup;
 		}
 	}
 
