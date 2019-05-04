@@ -27,9 +27,9 @@ RenderSettings:
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
-  m_HaloStrength: 0.5
+  m_HaloStrength: 0.397
   m_FlareStrength: 1
-  m_FlareFadeSpeed: 3
+  m_FlareFadeSpeed: 7.76
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
@@ -1015,6 +1015,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: CartridgeEjectEffect
       objectReference: {fileID: 0}
+    - target: {fileID: 198000010131513902, guid: 7ca96822084510147adb2aea03d45e3b,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000010131513902, guid: 7ca96822084510147adb2aea03d45e3b,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4000011175361746, guid: 7ca96822084510147adb2aea03d45e3b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.08
@@ -1058,16 +1068,6 @@ PrefabInstance:
     - target: {fileID: 4000011175361746, guid: 7ca96822084510147adb2aea03d45e3b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.379
-      objectReference: {fileID: 0}
-    - target: {fileID: 198000010131513902, guid: 7ca96822084510147adb2aea03d45e3b,
-        type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 198000010131513902, guid: 7ca96822084510147adb2aea03d45e3b,
-        type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ca96822084510147adb2aea03d45e3b, type: 3}

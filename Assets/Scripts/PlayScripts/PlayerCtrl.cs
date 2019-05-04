@@ -98,36 +98,20 @@ public class PlayerCtrl : MonoBehaviour {
 		ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		Debug.DrawRay(ray.origin, ray.direction * 200f, Color.green);
 		if ( Physics.Raycast(ray, out hit, 300f) ) mousePos = hit.point;
-		//mousePos = hit.point;
+
 		mousePos.y = 0;
 
 		Quaternion rot = Quaternion.LookRotation(mousePos - playerTr.position);
 		playerTr.rotation = Quaternion.Slerp(playerTr.rotation, rot, rotSpeed * Time.deltaTime);
-
-		//mousePos = pointCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, pointCamera.transform.position.y));
-
-		//float dx = mousePos.x - playerTr.position.x;
-		//float dz = mousePos.z - playerTr.position.z;
-		//float rotDgree = Mathf.Atan2(dx, dz) * Mathf.Rad2Deg;
-
-		//playerTr.rotation = Quaternion.Lerp(playerTr.rotation, Quaternion.Euler(0f, rotDgree, 0f), rotSpeed * Time.deltaTime);
-
-		//Debug.Log(mousePos.x + ", " + mousePos.y + ", " + mousePos.z);
+		
 	}
 
-
-	private void OnDrawGizmos() {
-		//mousePos = pointCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, pointCamera.transform.position.y));
-
-		//Gizmos.color = Color.yellow;
-		//Gizmos.DrawSphere(mousePos, 1.0f);
-
-	}
 	
 	private void Key_1() {
 		if ( gunChangeIdx == 0 ) return;
 
 		gunChangeIdx = 0;
+		ChangeGun(gunChangeIdx);
 		GameManager.init.ChangeGunBoxSprite(gunChangeIdx);
 		Debug.Log("1");
 	}
@@ -135,7 +119,7 @@ public class PlayerCtrl : MonoBehaviour {
 		if ( gunChangeIdx == 1 ) return;
 
 		gunChangeIdx = 1;
-		FireCtrl.init.ChangeBullet();
+		ChangeGun(gunChangeIdx);
 		GameManager.init.ChangeGunBoxSprite(gunChangeIdx);
 		Debug.Log("2");
 	}
@@ -143,7 +127,7 @@ public class PlayerCtrl : MonoBehaviour {
 		if ( gunChangeIdx == 2 ) return;
 
 		gunChangeIdx = 2;
-		FireCtrl.init.ChangeBullet();
+		ChangeGun(gunChangeIdx);
 		GameManager.init.ChangeGunBoxSprite(gunChangeIdx);
 		Debug.Log("3");
 	}
