@@ -42,7 +42,9 @@ public class PlayerCtrl : MonoBehaviour {
 
 
 	private void Awake() {
-		init = this;
+		if (init == null)
+			init = this;
+
 		playerTr = GetComponent<Transform>();
 		anim = GetComponent<Animation>();
 		playerRigid = GetComponent<Rigidbody>();

@@ -52,8 +52,10 @@ public class FireCtrl : MonoBehaviour
 	
 
 	private void Awake() {
-		if ( init == null )
-			init = this;
+		if (init)
+			Destroy(gameObject);
+
+		init = this;
 
 		CreatePooling();
 	}
@@ -195,7 +197,7 @@ public class FireCtrl : MonoBehaviour
 
 		return null;
 	}
-
-
+	
 	public static FireCtrl init = null;
+
 }

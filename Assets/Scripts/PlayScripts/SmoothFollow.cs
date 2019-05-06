@@ -30,11 +30,6 @@ namespace UnityStanderdAssets.Utility {
 		}
 
 
-		private void Start() {
-
-		}
-
-
 		private void LateUpdate() {
 			ray = Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(target.position));
 			Debug.DrawRay(ray.origin, ray.direction * 100f, Color.green);
