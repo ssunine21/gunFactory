@@ -99,9 +99,9 @@ public class PlayerCtrl : MonoBehaviour {
 	private void MouseMove() {
 		ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		Debug.DrawRay(ray.origin, ray.direction * 200f, Color.green);
-		if ( Physics.Raycast(ray, out hit, 300f) ) mousePos = hit.point;
+		if ( Physics.Raycast(ray, out hit, 300f, 1 << 8) ) mousePos = hit.point;
 
-		mousePos.y = 0;
+		//mousePos.y = 0;
 
 		Quaternion rot = Quaternion.LookRotation(mousePos - playerTr.position);
 		playerTr.rotation = Quaternion.Slerp(playerTr.rotation, rot, rotSpeed * Time.deltaTime);
