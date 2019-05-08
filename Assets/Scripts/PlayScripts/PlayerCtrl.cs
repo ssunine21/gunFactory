@@ -15,8 +15,14 @@ public class PlayerCtrl : MonoBehaviour {
 
 	delegate void Action();
 
+	public Texture2D cursorIdle;
+	public Texture2D cursorOnMonster;
+	public Texture2D cursorOnWall;
+	public CursorMode cursorMode = CursorMode.Auto;
+
 	public float moveSpeed = 5.0f;
 	public float rotSpeed = 5.0f;
+	public Vector3 mouseCorrection = Vector3.zero;
 	
 	public PlayerAnim playerAnim;
 	public Animation anim;
@@ -97,11 +103,18 @@ public class PlayerCtrl : MonoBehaviour {
 
 
 	private void MouseMove() {
-		ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		Debug.DrawRay(ray.origin, ray.direction * 200f, Color.green);
-		if ( Physics.Raycast(ray, out hit, 300f, 1 << 8) ) mousePos = hit.point;
-
-		//mousePos.y = 0;
+		ray = Camera.main.ScreenPointToRay((Input.mousePosition - mouseCorrection));
+		Debug.DrawRay(ray.origin, ray.direction * 100f, Color.green);
+		if ( Physics.Raycast(ray, out hit, 300f, 1 << 8) ) {
+			mousePos = hit.point;
+			Cursor.SetCursor(cursorIdle, mousePos, cursorMode);
+		}
+		//else if ( Physics.Raycast(ray, out hit, 300f, 1 << 9)) {
+		//	mousePos = hit.point;
+		//	Cursor.SetCursor(cursorOnWall, mousePos, cursorMode);
+		//}
+		mousePos = hit.point;
+		mousePos.y = playerTr.position.y;
 
 		Quaternion rot = Quaternion.LookRotation(mousePos - playerTr.position);
 		playerTr.rotation = Quaternion.Slerp(playerTr.rotation, rot, rotSpeed * Time.deltaTime);

@@ -18,6 +18,9 @@ namespace UnityStanderdAssets.Utility {
 		[SerializeField]
 		private float heightDamping = 3.0f;
 
+		public float mouseDir = 0f;
+		private Vector3 mousePos;
+
 		private Transform cameraTr;
 
 		//벽 감지를 위한 레이
@@ -52,16 +55,28 @@ namespace UnityStanderdAssets.Utility {
 
 			var currentRotation = Quaternion.Euler(0, currentRotationAngle, 0);
 
-			cameraTr.position = target.position;
+			//mousePos에 따른 카메라 추가 움직임
+			mousePos = ReturnMouse(Input.mousePosition);
+			mousePos.z = mousePos.y;
 
-			//Not camera rotate.
 
-			//cameraTr.position -= currentRotation * Vector3.forward * distance;
+			cameraTr.position = target.position + (mousePos * mouseDir);
 			cameraTr.position -= Vector3.forward * distance;
 
 			cameraTr.position = new Vector3(cameraTr.position.x, currentHeight, cameraTr.position.z);
-			cameraTr.LookAt(target);
-			
+			//cameraTr.LookAt(target);
+
+		}
+
+		Vector3 ReturnMouse( Vector3 mousePos ) {
+			Vector3 temp = (Camera.main.ScreenToViewportPoint(mousePos) - new Vector3(0.5f, 0.5f));
+		
+			if ( temp.x < -0.5f ) temp.x = -0.5f;
+			if ( temp.x > 0.5f ) temp.x = 0.5f;
+			if ( temp.y < -0.5f ) temp.y = -0.5f;
+			if ( temp.y > 0.5f ) temp.y = 0.5f;
+
+			return temp;
 		}
 	}
 }
