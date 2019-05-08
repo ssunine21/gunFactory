@@ -152,7 +152,7 @@ public class PlayerCtrl : MonoBehaviour {
 
 	private void ChangeGun(int changeIdx) {
 
-		FireCtrl.init.weaponType = (FireCtrl.WeaponType)changeIdx;
+		FireCtrl.init.weaponType = (WeaponType)changeIdx;
 		StartCoroutine(FireCtrl.init.ChangeBullet());
 	}
 

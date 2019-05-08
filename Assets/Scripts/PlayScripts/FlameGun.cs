@@ -2,19 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlameGun : GunManager {
-
-	protected override void Awake() {
-
-		rid = GetComponent<Rigidbody>();
-		bulletTr = GetComponent<Transform>();
-	}
-
-	protected override void OnDisable() {
-		bulletTr.position = Vector3.zero;
-		bulletTr.rotation = Quaternion.identity;
-
-		//rid.Sleep();
-	}
+public class FlameGun : MonoBehaviour {
 
 }

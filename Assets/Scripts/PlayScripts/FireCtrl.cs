@@ -7,12 +7,6 @@ using UnityEngine.UI;
 
 public class FireCtrl : MonoBehaviour
 {
-	public enum WeaponType {
-		GUN = 0,
-		SHOTGUN,
-		FIREGUN
-
-	}
 	
 	[SerializeField]
 	private WeaponType _weaponType;
@@ -26,18 +20,17 @@ public class FireCtrl : MonoBehaviour
 	private float currTime;
 
 	public GameObject[] bullets;
+	private Gun currGun;
 	private ParticleSystem flameBullet;
 	public bool isFlameBullet = false;
 	public bool isShotFlame = false;
 
-	public GameObject gunManager;
+	private GameObject gunManager;
 	private List<GameObject> bulletList = new List<GameObject>();
 
 	public ParticleSystem cartridge = null;
 	public Transform firePosTr;
-
-	public int maxBullet = 50;
-	private int currBullet;
+	
 	public Text currbullet_Text;
 
 	public float reloadTime = 2f;
@@ -61,13 +54,15 @@ public class FireCtrl : MonoBehaviour
 	}
 
 	void Start() {
+		currGun = bullets[PlayerCtrl.init.gunChangeIdx].GetComponent<Gun>();
+
 		currTime = Time.time;
 		muzzleFlash = firePosTr.GetComponentInChildren<ParticleSystem>();
 		flameBullet = bullets[(int)WeaponType.FIREGUN].GetComponent<ParticleSystem>();
-		currBullet = maxBullet;
 
 		origin_moveSpeed = PlayerCtrl.init.moveSpeed;
 		UpdateBulletText();
+
 	}
 	
 
@@ -77,7 +72,7 @@ public class FireCtrl : MonoBehaviour
 		if ( !isStop && Input.GetMouseButton(0) ) {
 			Fire();
 
-			if ( currBullet == 0 ) {
+			if ( currGun.CurrBullet <= 0 ) {
 				StartCoroutine(Reloading());
 			}
 		}
@@ -92,7 +87,7 @@ public class FireCtrl : MonoBehaviour
 
 
 	private void Fire() {
-		if ( currTime + fireSpeed[PlayerCtrl.init.gunChangeIdx] > Time.time ) return;
+		if ( currTime + currGun._reloadSpeed > Time.time ) return;
 
 		PlayerCtrl.init.moveSpeed = origin_moveSpeed - decrease_moveSpeed;
 		currTime = Time.time;
@@ -100,9 +95,6 @@ public class FireCtrl : MonoBehaviour
 		if ( isFlameBullet ) {
 			isShotFlame = true;
 			flameBullet.Play();
-
-			currBullet--;
-			UpdateBulletText();
 		}
 		else {
 			var _bullet = GetBullet();
@@ -112,19 +104,20 @@ public class FireCtrl : MonoBehaviour
 				_bullet.SetActive(true);
 
 			}
-
-			currBullet--;
-
 			if ( cartridge ) cartridge.Play();
 			if ( muzzleFlash ) muzzleFlash.Play();
-			UpdateBulletText();
+
 		}
+
+		currGun.CurrBullet--;
+		UpdateBulletText();
 	}
 
 
 	public IEnumerator Reloading() {
 		isStop = true;
-		flameBullet.Stop();
+		if (flameBullet)
+			flameBullet.Stop();
 
 		yield return new WaitForSeconds(reloadTime);
 
@@ -135,7 +128,8 @@ public class FireCtrl : MonoBehaviour
 		}
 
 		isStop = false;
-		currBullet = maxBullet;
+
+		currGun.CurrBullet = currGun._maxBullet;
 		UpdateBulletText();
 	}
 
@@ -144,33 +138,36 @@ public class FireCtrl : MonoBehaviour
 		yield return new WaitForSeconds(changingBulletTime);
 		DestroyPooling();
 		CreatePooling();
+		UpdateBulletText();
 
 		isStop = false;
 	}
 
 
 	private void UpdateBulletText() {
-		currbullet_Text.text = currBullet.ToString("000");
+		currbullet_Text.text = currGun.CurrBullet.ToString("000");
 	}
 
 
 	private void CreatePooling() {
 		if(gunManager == null) {
+			gunManager = new GameObject("GunManager");
 			Debug.Log("ERROR! : bulletPool is empty");
-			return;
 		}
 
-		if ( PlayerCtrl.init.gunChangeIdx == (int)WeaponType.FIREGUN ) {
+		currGun = bullets[PlayerCtrl.init.gunChangeIdx].GetComponent<Gun>();
+
+		if ( currGun.weaponType == WeaponType.FIREGUN ) {
 			isFlameBullet = true;
-			var obj = Instantiate<GameObject>(bullets[PlayerCtrl.init.gunChangeIdx], firePosTr);
+			var obj = Instantiate<GameObject>(bullets[(int)currGun.weaponType], firePosTr);
 			flameBullet = obj.GetComponent<ParticleSystem>();
 			flameBullet.Stop();
 			bulletList.Add(obj);
 		}
 		else {
 			isFlameBullet = false;
-			for ( int i = 0; i < maxBullet; ++i ) {
-				var obj = Instantiate<GameObject>(bullets[PlayerCtrl.init.gunChangeIdx], gunManager.transform);
+			for ( int i = 0; i < currGun._maxBullet; ++i ) {
+				var obj = Instantiate<GameObject>(bullets[(int)currGun.weaponType], gunManager.transform);
 				obj.SetActive(false);
 
 				bulletList.Add(obj);

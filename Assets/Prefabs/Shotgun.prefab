@@ -146,9 +146,9 @@ GameObject:
   - component: {fileID: 7128092310181399037}
   - component: {fileID: 678535402011352380}
   - component: {fileID: 2958433251763243728}
-  - component: {fileID: 1688071979228724793}
+  - component: {fileID: 8139130076734996750}
   m_Layer: 0
-  m_Name: ShotgunBullet
+  m_Name: Shotgun
   m_TagString: BULLET
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,7 +199,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1688071979228724793
+--- !u!114 &8139130076734996750
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -208,9 +208,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7128092310181399010}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca1c8471c2ff13d41981e2eea3dc867d, type: 3}
+  m_Script: {fileID: 11500000, guid: b7bc3bb0d2877804780ab600a968511a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponType: 0
+  _bulletSpeed: 800
+  _bulletDamage: 20
+  _reloadSpeed: 0.1
+  _maxBullet: 100
 --- !u!1001 &7128092310145081874
 PrefabInstance:
   m_ObjectHideFlags: 0

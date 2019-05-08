@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 4587604954755873427}
   - component: {fileID: 1676495046918033155}
   m_Layer: 0
-  m_Name: GunBullet
+  m_Name: Pistol
   m_TagString: BULLET
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -218,6 +218,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7bc3bb0d2877804780ab600a968511a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponType: 0
+  _bulletSpeed: 800
+  _bulletDamage: 20
+  _reloadSpeed: 0.2
+  _maxBullet: 50
 --- !u!222 &4587604954755873427
 CanvasRenderer:
   m_ObjectHideFlags: 0
