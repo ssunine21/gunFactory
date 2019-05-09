@@ -23,7 +23,7 @@ public class EnemyDamaged : MonoBehaviour
 		if(collision.collider.tag == bulletTeg) {
 			ShowBloodEffect(collision);
 			collision.gameObject.SetActive(false);
-			hp -= collision.gameObject.GetComponent<GunManager>()._bulletDamage;
+			hp -= collision.gameObject.GetComponent<Gun>()._bulletDamage;
 		}
 	}
 
