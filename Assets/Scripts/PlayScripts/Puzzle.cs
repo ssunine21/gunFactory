@@ -9,7 +9,6 @@ public class Puzzle : MonoBehaviour
 	private RectTransform tr;
 
 	public Canvas panel = null;
-	public Door door = null;
 
 	public Image gage = null;
 	public Image point = null;
@@ -54,6 +53,5 @@ public class Puzzle : MonoBehaviour
 		yield return new WaitForSeconds(1.5f);
 
 		panel.gameObject.SetActive(false);
-		door.SetAnim();
 	}
 }
