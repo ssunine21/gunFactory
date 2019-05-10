@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class IsTrigger : MonoBehaviour
 {
-	public Canvas viewCanvas = null;
+	public Canvas help_F = null;
+	public Canvas puzzle = null;
 	
 	private bool _active;
 	public bool Active {
@@ -12,23 +13,27 @@ public class IsTrigger : MonoBehaviour
 	}
 
 	private void Start() {
-		if ( viewCanvas )
-			viewCanvas.gameObject.SetActive(false);
+		if ( help_F )
+			help_F.gameObject.SetActive(false);
 	}
 
 	private void OnTriggerStay( Collider other ) {
 		if ( other.gameObject.CompareTag("Player") ) {
-			viewCanvas.gameObject.SetActive(true);
+			help_F.gameObject.SetActive(true);
 
 			if ( Input.GetKeyDown(KeyCode.F) ) {
-				_active = true;
-				gameObject.GetComponentInParent<IsActive>().Active();
-				gameObject.SetActive(false);
+				puzzle.gameObject.SetActive(true);
 			}
 		}
 	}
 
 	private void OnTriggerExit( Collider other ) {
-		viewCanvas.gameObject.SetActive(false);
+		help_F.gameObject.SetActive(false);
+	}
+
+	public void TriggerPlay() {
+		_active = true;
+		gameObject.GetComponentInParent<IsActive>().Active();
+		gameObject.SetActive(false);
 	}
 }

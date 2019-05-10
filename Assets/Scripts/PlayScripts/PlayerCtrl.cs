@@ -84,8 +84,8 @@ public class PlayerCtrl : MonoBehaviour {
 
 
 	private void PlayerMove() {
-		h_Value = Input.GetAxis("Horizontal");
-		v_Value = Input.GetAxis("Vertical");
+		h_Value = Input.GetAxisRaw("Horizontal");
+		v_Value = Input.GetAxisRaw("Vertical");
 
 		movement = (Vector3.forward * v_Value) + (Vector3.right * h_Value);
 		playerTr.Translate(movement.normalized * moveSpeed * Time.deltaTime, Space.World);
