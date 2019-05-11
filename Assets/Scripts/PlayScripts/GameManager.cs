@@ -48,8 +48,10 @@ public class GameManager : MonoBehaviour
 	}
 
 	public void ChangeGunBoxSprite(int idx) {
+		Debug.Log(idx);
 		gunBackground.GetComponent<Image>().sprite = gunSprite[idx];
 		mainWeapon_Image.sprite =  gunBackground.transform.GetChild(idx).GetComponent<Image>().sprite;
+
 
 		//UI.transform.GetChild(idx).GetComponent<Image>().sprite = gunSprite[idx];
 	}
