@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 	public Sprite[] gunSprite;
-	public Transform[] enemy_spawnPoint;
+	private Transform[] enemy_spawnPoint;
+	//private Transform[] enemy_SpawnPoint;
 	public GameObject enemy;
 	public GameObject gunBackground;
 	public Image mainWeapon_Image;
@@ -24,7 +25,7 @@ public class GameManager : MonoBehaviour
 	}
 
 	private void Start() {
-		//enemy_spawnPoint = GameObject.Find("SpawnPointGroup").GetComponentsInChildren<Transform>();
+		enemy_spawnPoint = GameObject.Find("SpawnPointGroup").GetComponentsInChildren<Transform>();
 		StartCoroutine(SpawnEnemy());
 		maxEnemy = enemy_spawnPoint.Length - 1;
 	}

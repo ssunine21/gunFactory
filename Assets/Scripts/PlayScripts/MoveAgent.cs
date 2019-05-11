@@ -47,7 +47,7 @@ public class MoveAgent : MonoBehaviour
 		this.patrolling = true;
 
 		//목적지가 가까워질수록 속도를 줄이는 옵션 비활성화
-		agent.autoBraking = false;
+		//agent.autoBraking = false;
 	}
 
 	private void TraceTarget(Vector3 pos) {

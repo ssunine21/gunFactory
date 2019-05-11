@@ -43,7 +43,7 @@ public class FlameGunFOV : MonoBehaviour
 			
 			if ( Vector3.Angle(playerTr.forward, dir) < viewAngle * 0.5f ) {
 				if ( FireCtrl.init.isShotFlame ) {
-					StartCoroutine("DotDamaged", coll);
+					Attack(coll);
 				}
 			}
 		}
@@ -51,8 +51,7 @@ public class FlameGunFOV : MonoBehaviour
 		return isEnemy;
 	}
 
-	public IEnumerator DotDamaged(Collider coll) {
+	public void Attack( Collider coll) {
 		coll.gameObject.GetComponent<EnemyDamaged>().hp -= flameGunDamage;
-		yield return null;
 	}
 }

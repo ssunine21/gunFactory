@@ -24,6 +24,7 @@ public class EnemyDamaged : MonoBehaviour
 			ShowBloodEffect(collision);
 			collision.gameObject.SetActive(false);
 			hp -= collision.gameObject.GetComponent<Gun>()._bulletDamage;
+			Debug.Log(hp);
 		}
 	}
 

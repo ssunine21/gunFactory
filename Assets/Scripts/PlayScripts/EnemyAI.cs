@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour
 
 	public State state = State.PATRAL;
 
-	private Collider enemyCollider;
+	private Transform attackRange;
 	private MoveAgent moveAgent;
 	private Transform playerTr;
 	private Transform enemyTr;
@@ -29,7 +29,6 @@ public class EnemyAI : MonoBehaviour
 	public float attack_Delay = 3f;
 	public float die_Delay = 3f;
 	public float attack_Damage = 10f;
-	public float rotSpeed = 10f;
 
 	public bool isDie = false;
 
@@ -37,10 +36,11 @@ public class EnemyAI : MonoBehaviour
 		init = this;
 
 		playerTr = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-		enemyCollider = GetComponent<Collider>();
 		enemyTr = GetComponent<Transform>();
 		moveAgent = GetComponent<MoveAgent>();
 		animator = GetComponent<Animator>();
+
+		attackRange = this.transform.Find("attackRange");
 
 		stateCheck_time = new WaitForSeconds(0.3f);
 	}
@@ -52,17 +52,18 @@ public class EnemyAI : MonoBehaviour
 
 	private void Update() {
 		if (isAttack) {
-			if(Time.time > nextAttack) {
+			if ( Time.time > nextAttack ) {
 				Attack();
 				nextAttack = Time.time + attack_Delay;
+				attackRange.gameObject.SetActive(true);
 			}
+
+			else attackRange.gameObject.SetActive(false);
 		}
 	}
 
 	private void Attack() {
-
 		animator.SetTrigger(hash_isAttack);
-		enemyCollider.isTrigger = false;
 	}
 
 	IEnumerator CheckState() {
