@@ -18,11 +18,12 @@ public class IsTrigger : MonoBehaviour
 	}
 
 	private void OnTriggerStay( Collider other ) {
-		if ( other.gameObject.CompareTag("Player") ) {
+		if ( other.gameObject.CompareTag("Player") && Quest.init.QuestIdx >= 1) {
 			help_F.gameObject.SetActive(true);
 
 			if ( Input.GetKeyDown(KeyCode.F) ) {
 				puzzle.gameObject.SetActive(true);
+				FireCtrl.init.IsStop = true;
 			}
 		}
 	}
@@ -34,6 +35,6 @@ public class IsTrigger : MonoBehaviour
 	public void TriggerPlay() {
 		_active = true;
 		gameObject.GetComponentInParent<IsActive>().Active();
-		gameObject.SetActive(false);
+		//gameObject.SetActive(false);
 	}
 }

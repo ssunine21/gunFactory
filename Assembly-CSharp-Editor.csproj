@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Editor\FOVEditor.cs" />
     <Compile Include="Assets\zEffectExamples\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
     <None Include="Assets\zEffectExamples\Editor\PackageManagerAssembly\PackageImportList.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">

@@ -5,16 +5,19 @@ using UnityEngine;
 public class IsActive : MonoBehaviour
 {
 	private Animator doorAnim;
-	private IsTrigger isTrigger;
+	public IsTrigger isTrigger;
 
 	private void Awake() {
 		doorAnim = GetComponent<Animator>();
-		isTrigger = this.transform.Find("Trigger").GetComponent<IsTrigger>();
+		//isTrigger = this.transform.Find("Trigger").GetComponent<IsTrigger>();
 	}
 
 	public void Active() {
 		if ( isTrigger.Active ) {
 			doorAnim.SetBool("isOpen", true);
+			FireCtrl.init.IsStop = false;
+
+			Quest.init.QuestUpdate();
 		}
 	}
 }

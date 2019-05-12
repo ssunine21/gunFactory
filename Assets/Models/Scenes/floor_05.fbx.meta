@@ -23,7 +23,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: white emision
-    second: {fileID: 2100000, guid: 6b6dfd77776c54a4781ec8cab4d87860, type: 2}
+    second: {fileID: 2100000, guid: 6cd9f87a3b9d57e4c9d9fa32ad010fb9, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

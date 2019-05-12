@@ -8,8 +8,14 @@ public class EnemyAI : MonoBehaviour
 		PATRAL, TRACE, ATTACK, DIE
 	}
 
-	public State state = State.PATRAL;
+	private int dieCount = 0;
 
+	public State state = State.PATRAL;
+	public AudioClip dieSfx;
+
+	private AudioSource _audio;
+
+	private GameObject dieEffect;
 	private Transform attackRange;
 	private MoveAgent moveAgent;
 	private Transform playerTr;
@@ -27,19 +33,21 @@ public class EnemyAI : MonoBehaviour
 	public float attack_Distance = 5f;
 	public float trace_Distance = 5f;
 	public float attack_Delay = 3f;
-	public float die_Delay = 3f;
+	public float die_Delay = 1f;
 	public float attack_Damage = 10f;
+	public float rotSpeed = 10f;
 
 	public bool isDie = false;
 
 	private void Awake() {
 		init = this;
 
+		dieEffect = Resources.Load<GameObject>("monsterDead");
 		playerTr = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 		enemyTr = GetComponent<Transform>();
 		moveAgent = GetComponent<MoveAgent>();
 		animator = GetComponent<Animator>();
-
+		_audio = GetComponent<AudioSource>();
 		attackRange = this.transform.Find("attackRange");
 
 		stateCheck_time = new WaitForSeconds(0.3f);
@@ -52,6 +60,9 @@ public class EnemyAI : MonoBehaviour
 
 	private void Update() {
 		if (isAttack) {
+			Vector3 dir = playerTr.position - enemyTr.position;
+			enemyTr.rotation = Quaternion.Slerp(enemyTr.rotation, Quaternion.LookRotation(dir), rotSpeed * Time.deltaTime);
+
 			if ( Time.time > nextAttack ) {
 				Attack();
 				nextAttack = Time.time + attack_Delay;
@@ -98,15 +109,23 @@ public class EnemyAI : MonoBehaviour
 				case State.ATTACK:
 					if (!isAttack) isAttack = true;
 					moveAgent.Stop();
+
 					animator.SetBool(hash_isMove, false);
 					break;
 				case State.DIE:
+					dieCount++;
+					if ( Quest.init.QuestIdx == 0 ) Quest.init.QuestUpdate();
+
 					isDie = true;
 					isAttack = false;
+					_audio.PlayOneShot(dieSfx, 1f);
+					enemyTr.Find("Cylinder").gameObject.SetActive(false);
+					GameObject effect = Instantiate(dieEffect, enemyTr.position, enemyTr.rotation);
+					Destroy(effect, 2f);
+
 					moveAgent.Stop();
 					animator.SetBool(hash_isDie, true);
 					GetComponent<CapsuleCollider>().enabled = false;
-
 					Destroy(gameObject, die_Delay);
 					break;
 			}

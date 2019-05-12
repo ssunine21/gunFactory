@@ -34,7 +34,8 @@ public class EnemyDamaged : MonoBehaviour
 
 		Quaternion rot = Quaternion.FromToRotation(-Vector3.forward, _normal);
 
-		GameObject blood = Instantiate<GameObject>(bloodEffect, hitPos, rot);
+
+		GameObject blood = Instantiate(bloodEffect, hitPos, rot);
 		Destroy(blood, bloodEffect_destroyDelay);
 	}
 }

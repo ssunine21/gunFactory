@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
+public struct PlayerSfx {
+	public AudioClip[] fire;
+	public AudioClip[] reload;
+}
 
 
 public class FireCtrl : MonoBehaviour
@@ -19,23 +24,30 @@ public class FireCtrl : MonoBehaviour
 
 	private float currTime;
 
+	//[SerializeField]
 	public GameObject[] bullets;
-	private Gun currGun;
-	private ParticleSystem flameBullet;
-	public bool isFlameBullet = false;
-	public bool isShotFlame = false;
+
 
 	private GameObject gunManager;
 	private List<GameObject> bulletList = new List<GameObject>();
+	private Gun currGun;
+	private ParticleSystem flameBullet;
+	private AudioSource _audio;
 
 	public ParticleSystem cartridge = null;
 	public Transform firePosTr;
-	
 	public Text currbullet_Text;
+	public PlayerSfx playerSfx;
 
 	public float reloadTime = 2f;
 	public float changingBulletTime = 0.5f;
+	public bool isFlameBullet = false;
+	public bool isShotFlame = false;
+
 	private bool isStop = false;
+	public bool IsStop {
+		set { isStop = value; }
+	}
 
 	//private float destoryTime = 2f;
 	private ParticleSystem muzzleFlash;
@@ -59,10 +71,11 @@ public class FireCtrl : MonoBehaviour
 		currTime = Time.time;
 		muzzleFlash = firePosTr.GetComponentInChildren<ParticleSystem>();
 		flameBullet = bullets[(int)WeaponType.FIREGUN].GetComponent<ParticleSystem>();
-
 		origin_moveSpeed = PlayerCtrl.init.moveSpeed;
-		UpdateBulletText();
 
+		_audio = GetComponent<AudioSource>();
+
+		UpdateBulletText();
 	}
 	
 
@@ -79,8 +92,10 @@ public class FireCtrl : MonoBehaviour
 		else if ( Input.GetMouseButtonUp(0) ) {
 			PlayerCtrl.init.moveSpeed = origin_moveSpeed;
 			if ( isFlameBullet ) {
+
 				isShotFlame = false;
 				flameBullet.Stop();
+				_audio.Pause();
 			}
 		}
     }
@@ -107,17 +122,39 @@ public class FireCtrl : MonoBehaviour
 			if ( cartridge ) cartridge.Play();
 			if ( muzzleFlash ) muzzleFlash.Play();
 
+			FireSfx();
 		}
 
 		currGun.CurrBullet--;
 		UpdateBulletText();
 	}
 
+	private void FireSfx() {
+		var _sfx = playerSfx.fire[(int)weaponType];
+
+		//if ( isFlameBullet ) {
+		//	_audio.clip = _sfx;
+		//	_audio.Play();
+		//}
+		//else {
+			_audio.PlayOneShot(_sfx, 1f);
+		//}
+	}
+
+	public void ReloadSfx() {
+		var _sfx = playerSfx.reload[(int)weaponType];
+		_audio.PlayOneShot(_sfx, 1f);
+	}
+
 
 	public IEnumerator Reloading() {
 		isStop = true;
-		if (flameBullet)
+		if ( flameBullet ) {
 			flameBullet.Stop();
+			isShotFlame = false;
+		}
+
+		ReloadSfx();
 
 		yield return new WaitForSeconds(reloadTime);
 
@@ -128,6 +165,7 @@ public class FireCtrl : MonoBehaviour
 		}
 
 		isStop = false;
+		isShotFlame = true;
 
 		currGun.CurrBullet = currGun._maxBullet;
 		UpdateBulletText();
@@ -152,7 +190,7 @@ public class FireCtrl : MonoBehaviour
 	private void CreatePooling() {
 		if(gunManager == null) {
 			gunManager = new GameObject("GunManager");
-			Debug.Log("ERROR! : bulletPool is empty");
+			//Debug.Log("ERROR! : bulletPool is empty");
 		}
 
 		currGun = bullets[PlayerCtrl.init.gunChangeIdx].GetComponent<Gun>();

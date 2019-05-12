@@ -20,6 +20,7 @@ public class PlayerCtrl : MonoBehaviour {
 	public Texture2D cursorOnWall;
 	public CursorMode cursorMode = CursorMode.Auto;
 
+	public float dashSpeed = 30000f;
 	public float moveSpeed = 5.0f;
 	public float rotSpeed = 5.0f;
 	public Vector3 mouseCorrection = Vector3.zero;
@@ -36,7 +37,8 @@ public class PlayerCtrl : MonoBehaviour {
 	private Vector3 movement;
 	private Transform playerTr;
 	private Rigidbody playerRigid;
-
+	private float dashCoolTime = 3f;
+	private float currTime = 0;
 
 	private Dictionary<KeyCode, Action> keyDic;
 
@@ -61,7 +63,8 @@ public class PlayerCtrl : MonoBehaviour {
 			{KeyCode.Alpha1, Key_1 },
 			{KeyCode.Alpha2, Key_2 },
 			{KeyCode.Alpha3, Key_3 },
-			{KeyCode.R, Key_R }
+			{KeyCode.R, Key_R },
+			{KeyCode.Space, Key_Space }
 		};
 	}
 
@@ -106,17 +109,17 @@ public class PlayerCtrl : MonoBehaviour {
 		ray = Camera.main.ScreenPointToRay((Input.mousePosition - mouseCorrection));
 		Debug.DrawRay(ray.origin, ray.direction * 100f, Color.green);
 		if ( Physics.Raycast(ray, out hit, 300f, 1 << 8) ) {
-			mousePos = hit.point;
+			//mousePos = hit.point;
 			Cursor.SetCursor(cursorIdle, mousePos, cursorMode);
 		}
 		//else if ( Physics.Raycast(ray, out hit, 300f, 1 << 9)) {
 		//	mousePos = hit.point;
 		//	Cursor.SetCursor(cursorOnWall, mousePos, cursorMode);
 		//}
-		mousePos = hit.point;
+		mousePos = hit.point - playerTr.position;
 		mousePos.y = playerTr.position.y;
 
-		Quaternion rot = Quaternion.LookRotation(mousePos - playerTr.position);
+		Quaternion rot = Quaternion.LookRotation(mousePos);
 		playerTr.rotation = Quaternion.Slerp(playerTr.rotation, rot, rotSpeed * Time.deltaTime);
 		
 	}
@@ -128,6 +131,7 @@ public class PlayerCtrl : MonoBehaviour {
 		gunChangeIdx = 0;
 		ChangeGun(gunChangeIdx);
 		GameManager.init.ChangeGunBoxSprite(gunChangeIdx);
+		FireCtrl.init.ReloadSfx();
 		Debug.Log("1");
 	}
 	private void Key_2() {
@@ -136,6 +140,7 @@ public class PlayerCtrl : MonoBehaviour {
 		gunChangeIdx = 1;
 		ChangeGun(gunChangeIdx);
 		GameManager.init.ChangeGunBoxSprite(gunChangeIdx);
+		FireCtrl.init.ReloadSfx();
 		Debug.Log("2");
 	}
 	private void Key_3() {
@@ -148,6 +153,14 @@ public class PlayerCtrl : MonoBehaviour {
 	}
 	private void Key_R() {
 		StartCoroutine(FireCtrl.init.Reloading());
+		FireCtrl.init.ReloadSfx();
+	}
+	private void Key_Space() {
+		if ( currTime + dashCoolTime < Time.time ) {
+			playerRigid.AddForce(movement * dashSpeed);
+			currTime = Time.time;
+		}
+
 	}
 
 	private void ChangeGun(int changeIdx) {

@@ -48,8 +48,6 @@ public class Gun : MonoBehaviour {
 	}
 
 	private void OnCollisionEnter( Collision collision ) {
-		if ( collision.gameObject.layer == LayerMask.NameToLayer("Wall")) {
 			this.gameObject.SetActive(false);
-		}
 	}
 }

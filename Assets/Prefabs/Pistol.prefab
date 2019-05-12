@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3214065332440079016}
   - component: {fileID: 4560651128544403822}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 1061821266538506142}
   - component: {fileID: 4587604954755873427}
   - component: {fileID: 1676495046918033155}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Pistol
   m_TagString: BULLET
   m_Icon: {fileID: 0}
@@ -270,6 +270,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: f3be3666e308d450f8cc9ad434580302, type: 3}
       propertyPath: m_Name
       value: lowpolybullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f3be3666e308d450f8cc9ad434580302, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f3be3666e308d450f8cc9ad434580302, type: 3}
       propertyPath: m_LocalPosition.x
