@@ -62,12 +62,10 @@ public class FireCtrl : MonoBehaviour
 
 		init = this;
 
-		CreatePooling();
 	}
 
 	void Start() {
-		currGun = bullets[PlayerCtrl.init.gunChangeIdx].GetComponent<Gun>();
-
+		CreatePooling();
 		currTime = Time.time;
 		muzzleFlash = firePosTr.GetComponentInChildren<ParticleSystem>();
 		flameBullet = bullets[(int)WeaponType.FIREGUN].GetComponent<ParticleSystem>();
@@ -132,13 +130,13 @@ public class FireCtrl : MonoBehaviour
 	private void FireSfx() {
 		var _sfx = playerSfx.fire[(int)weaponType];
 
-		//if ( isFlameBullet ) {
-		//	_audio.clip = _sfx;
-		//	_audio.Play();
-		//}
-		//else {
+		if ( isFlameBullet ) {
+			_audio.clip = _sfx;
+			_audio.Play();
+		}
+		else {
 			_audio.PlayOneShot(_sfx, 1f);
-		//}
+		}
 	}
 
 	public void ReloadSfx() {

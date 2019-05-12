@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7bc3bb0d2877804780ab600a968511a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponType: 0
+  weaponType: 1
   _bulletSpeed: 800
   _bulletDamage: 20
   _reloadSpeed: 0.1
