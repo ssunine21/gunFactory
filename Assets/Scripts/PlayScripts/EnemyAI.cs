@@ -29,6 +29,7 @@ public class EnemyAI : MonoBehaviour
 	private readonly int hash_isMove = Animator.StringToHash("isMove");
 	private readonly int hash_isDie = Animator.StringToHash("isDie");
 	private readonly int hash_isAttack = Animator.StringToHash("isAttack");
+	private readonly int hash_attackIdx = Animator.StringToHash("attackIdx");
 
 	public float attack_Distance = 5f;
 	public float trace_Distance = 5f;
@@ -75,6 +76,7 @@ public class EnemyAI : MonoBehaviour
 
 	private void Attack() {
 		animator.SetTrigger(hash_isAttack);
+		animator.SetInteger(hash_attackIdx, Random.Range(0, 2));
 	}
 
 	IEnumerator CheckState() {

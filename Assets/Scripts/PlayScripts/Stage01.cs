@@ -7,6 +7,7 @@ public class Stage01 : MonoBehaviour
 	public GameObject door;
 	public GameObject lightParent;
 
+	private AudioSource _audio;
 	private Light[] lights;
 
 	private float delayTime = 5.0f;
@@ -16,6 +17,7 @@ public class Stage01 : MonoBehaviour
 
 	private void Start() {
 		lights = lightParent.GetComponentsInChildren<Light>();
+		_audio = GetComponent<AudioSource>();
 	}
 
 	private void OnTriggerEnter( Collider other ) {
@@ -29,7 +31,7 @@ public class Stage01 : MonoBehaviour
 
 	private IEnumerator RotateLight() {
 		delayTime += Time.time;
-
+		_audio.PlayOneShot(_audio.clip);
 		while ( delayTime > Time.time ) {
 			foreach(var light in lights ) {
 				light.transform.Rotate(0, rotSpeed * Time.deltaTime, 0, Space.World);

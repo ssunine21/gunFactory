@@ -10,18 +10,16 @@ public class FlameGunFOV : MonoBehaviour
 	public float viewAngle = 60f;
 	private Transform enemyTr;
 	private Transform playerTr;
-	public float flameGunDamage = 10f;
+	private float flameGunDamage;
 	public LayerMask enemyLayer;
 	public LayerMask obstacleLayer;
 
-	private void Awake() {
-		playerTr = GetComponent<Transform>();
-		//enemyLayer = LayerMask.NameToLayer("Enemy");
-		//obstacleLayer = LayerMask.NameToLayer("Obstacle");
 
-		//layerMask = 1 << enemyLayer | 1 << obstacleLayer;
+	private void Start() {
+		playerTr = GetComponent<Transform>();
+		flameGunDamage = this.GetComponentInParent<Gun>()._bulletDamage;
 	}
-	
+
 	private void Update() {
 		if ( isEnemy() && FireCtrl.init.isShotFlame)
 			Debug.Log("d");
@@ -52,6 +50,6 @@ public class FlameGunFOV : MonoBehaviour
 	}
 
 	public void Attack( Collider coll) {
-		coll.gameObject.GetComponent<EnemyDamaged>().hp -= flameGunDamage;
+		coll.gameObject.GetComponent<EnemyDamaged>().Damaged(flameGunDamage);
 	}
 }

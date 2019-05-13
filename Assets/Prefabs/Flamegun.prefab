@@ -4536,7 +4536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 2
   _bulletSpeed: 0
-  _bulletDamage: 20
+  _bulletDamage: 10
   _reloadSpeed: 0
   _maxBullet: 500
 --- !u!54 &3440317104266852235
@@ -4600,7 +4600,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewRange: 5
   viewAngle: 61
-  flameGunDamage: 10
   enemyLayer:
     serializedVersion: 2
     m_Bits: 1024

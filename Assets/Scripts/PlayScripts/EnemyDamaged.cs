@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemyDamaged : MonoBehaviour
 {
-	public float hp = 100f;
+	public float initHp = 100f;
+	private float hp = 100f;
 	public float bloodEffect_destroyDelay = 1f;
 
 	private const string bulletTeg = "BULLET";
@@ -12,6 +13,7 @@ public class EnemyDamaged : MonoBehaviour
 
 	private void Start() {
 		bloodEffect = Resources.Load<GameObject>("BulletImpactFleshBigEffect");
+		hp = initHp;
 	}
 
 	private void Update() {
@@ -37,5 +39,10 @@ public class EnemyDamaged : MonoBehaviour
 
 		GameObject blood = Instantiate(bloodEffect, hitPos, rot);
 		Destroy(blood, bloodEffect_destroyDelay);
+	}
+
+	public void Damaged(float value) {
+		hp -= value;
+		Debug.Log(hp);
 	}
 }

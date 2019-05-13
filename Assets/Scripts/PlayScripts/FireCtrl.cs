@@ -66,6 +66,8 @@ public class FireCtrl : MonoBehaviour
 
 	void Start() {
 		CreatePooling();
+		currGun.CurrBullet = currGun._maxBullet;
+
 		currTime = Time.time;
 		muzzleFlash = firePosTr.GetComponentInChildren<ParticleSystem>();
 		flameBullet = bullets[(int)WeaponType.FIREGUN].GetComponent<ParticleSystem>();

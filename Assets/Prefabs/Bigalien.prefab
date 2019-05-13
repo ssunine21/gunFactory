@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 6811692916090137152}
   - component: {fileID: 6811692916090137167}
   - component: {fileID: 6811692916090137166}
+  - component: {fileID: 5933175222173773202}
   - component: {fileID: 6811692916090137165}
   - component: {fileID: 6811692916090137164}
   - component: {fileID: 6811692916090137163}
@@ -248,6 +249,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &5933175222173773202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6811692917326016550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9a1cfce067b4f64bad3b599888eae66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpCooldown: 2
 --- !u!114 &6811692916090137165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,11 +291,11 @@ MonoBehaviour:
   state: 0
   dieSfx: {fileID: 8300000, guid: e18286058a00b7143a540aa8a0ae92e2, type: 3}
   attack_Distance: 3.2
-  trace_Distance: 20
+  trace_Distance: 13
   attack_Delay: 2
   die_Delay: 2
   attack_Damage: 10
-  rotSpeed: 10
+  rotSpeed: 5
   isDie: 0
 --- !u!114 &6811692916090137163
 MonoBehaviour:
@@ -295,7 +309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e16f03f88b97212408bff1750657f5de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 500
+  initHp: 500
   bloodEffect_destroyDelay: 1
 --- !u!82 &3251573897708305528
 AudioSource:
