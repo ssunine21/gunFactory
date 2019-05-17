@@ -4,7 +4,8 @@ public class ShellExplosion : MonoBehaviour
 {
     public LayerMask m_TankMask;
     public ParticleSystem m_ExplosionParticles;       
-    public AudioSource m_ExplosionAudio;              
+    public AudioSource m_ExplosionAudio;
+	public float m_Duration = 3f;
     public float m_MaxDamage = 100f;                  
     public float m_ExplosionForce = 1000f;            
     public float m_MaxLifeTime = 2f;                  
@@ -19,13 +20,41 @@ public class ShellExplosion : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Find all the tanks in an area around the shell and damage them.
+		Collider[] colliders = Physics.OverlapSphere(this.transform.position, m_ExplosionRadius, m_TankMask);
+
+		foreach (var collider in colliders ) {
+			Rigidbody targetRigidbody = collider.GetComponent<Rigidbody>();
+
+			if ( !targetRigidbody ) continue;
+
+			targetRigidbody.AddExplosionForce(m_ExplosionForce, this.transform.position, m_ExplosionRadius);
+			TankHealth targetHealth = targetRigidbody.GetComponent<TankHealth>();
+
+			if ( !targetHealth ) continue;
+
+			float damage = CalculateDamage(targetRigidbody.position);
+
+			targetHealth.TakeDamage(damage);
+		}
+
+		m_ExplosionParticles.transform.parent = null;
+		m_ExplosionParticles.Play();
+
+		Destroy(m_ExplosionParticles.gameObject, m_Duration);
+		Destroy(gameObject);
     }
 
 
     private float CalculateDamage(Vector3 targetPosition)
     {
-        // Calculate the amount of damage a target should take based on it's position.
-        return 0f;
+		Vector3 explosionToTarget = targetPosition - this.transform.position;
+
+		float explosionDistance = explosionToTarget.magnitude;
+		float relativeDistance = (m_ExplosionRadius - explosionDistance) / m_ExplosionRadius;
+
+		float damege = relativeDistance * m_MaxDamage;
+
+		damege = Mathf.Max(0f, damege);
+		return damege;
     }
 }

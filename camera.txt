@@ -1,0 +1,58 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CameraControl : MonoBehaviour {
+	[SerializeField] private float m_Distance = 10.0f;
+	[SerializeField] private float m_Height = 5.0f;
+
+
+	public Transform m_Targets = null;
+	public float mouseDir = 0f;
+	private Vector3 m_Turretview;
+
+	private Transform cameraTr;
+
+	private void Awake() {
+		cameraTr = GetComponent<Transform>();
+	}
+
+
+	private void LateUpdate() {
+
+		if ( !m_Targets )
+			return;
+
+		var wantedRotationAngle = m_Targets.eulerAngles.y;
+		var wantedHeight = m_Targets.position.y + m_Height;
+
+		var currentRotationAngle = cameraTr.eulerAngles.y;
+		var currentHeight = cameraTr.position.y;
+		
+
+		var currentRotation = Quaternion.Euler(0, currentRotationAngle, 0);
+
+		//mousePos에 따른 카메라 추가 움직임
+		m_Turretview = ReturnMouse(Input.mousePosition);
+		m_Turretview.z = m_Turretview.y;
+
+
+		cameraTr.position = m_Targets.position + (m_Turretview * mouseDir);
+		cameraTr.position -= Vector3.forward * m_Distance;
+
+		cameraTr.position = new Vector3(cameraTr.position.x, currentHeight, cameraTr.position.z);
+		//cameraTr.LookAt(target);
+
+	}
+
+	Vector3 ReturnMouse( Vector3 mousePos ) {
+		Vector3 temp = (Camera.main.ScreenToViewportPoint(mousePos) - new Vector3(0.5f, 0.5f));
+
+		if ( temp.x < -0.5f ) temp.x = -0.5f;
+		if ( temp.x > 0.5f ) temp.x = 0.5f;
+		if ( temp.y < -0.5f ) temp.y = -0.5f;
+		if ( temp.y > 0.5f ) temp.y = 0.5f;
+
+		return temp;
+	}
+}

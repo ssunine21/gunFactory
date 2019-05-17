@@ -10,13 +10,13 @@ public class UIDirectionControl : MonoBehaviour
 
     private void Start()
     {
-        m_RelativeRotation = transform.parent.localRotation;
+        m_RelativeRotation = this.transform.parent.localRotation;
     }
 
 
     private void Update()
     {
         if (m_UseRelativeRotation)
-            transform.rotation = m_RelativeRotation;
+            this.transform.rotation = m_RelativeRotation;
     }
 }
