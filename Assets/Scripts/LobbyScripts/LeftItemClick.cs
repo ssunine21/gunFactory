@@ -8,6 +8,8 @@ public class LeftItemClick : MonoBehaviour {
 	public int idx = 0;
 	public ITEMGROUP itemGroup;
 
+
+	private float rotSpeed = 50f;
 	private RectTransform itemRect;
 	private Quaternion currRotation;
 
@@ -18,7 +20,7 @@ public class LeftItemClick : MonoBehaviour {
 
 	private void Update() {
 		if ( LeftPanel.init.idx == idx ) {
-			itemRect.Rotate(0, -1, 0, Space.World);
+			itemRect.Rotate(0, rotSpeed * Time.deltaTime, 0, Space.World);
 		}
 		else {
 			itemRect.rotation = currRotation;
@@ -39,7 +41,7 @@ public class LeftItemClick : MonoBehaviour {
 
 	private void OnMouseExit() {
 		if ( LeftPanel.init.idx == idx ) return;
-
+	
 		itemRect.localScale = Vector3.one;
 	}
 
