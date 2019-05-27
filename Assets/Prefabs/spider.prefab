@@ -2284,6 +2284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  dieSfx: {fileID: 0}
   attack_Distance: 2.5
   trace_Distance: 20
   attack_Delay: 2
@@ -2325,7 +2326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e16f03f88b97212408bff1750657f5de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
+  initHp: 100
   bloodEffect_destroyDelay: 1
 --- !u!1 &4457535435978267112
 GameObject:
