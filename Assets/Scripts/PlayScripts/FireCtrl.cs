@@ -120,13 +120,13 @@ public class FireCtrl : NetworkBehaviour
 				_bullet.transform.rotation = firePosTr.rotation;
 				_bullet.SetActive(true);
 
+				NetworkServer.Spawn(_bullet);
 			}
 			if ( cartridge ) cartridge.Play();
 			if ( muzzleFlash ) muzzleFlash.Play();
 
 			FireSfx();
 
-			NetworkServer.Spawn(_bullet);
 		}
 
 		currGun.CurrBullet--;
@@ -187,6 +187,7 @@ public class FireCtrl : NetworkBehaviour
 
 
 	private void UpdateBulletText() {
+		if ( !currbullet_Text ) currbullet_Text = GameObject.FindGameObjectWithTag("Bullet_Text").GetComponent<Text>();
 		currbullet_Text.text = currGun.CurrBullet.ToString("000");
 	}
 

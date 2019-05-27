@@ -7,6 +7,9 @@ TagManager:
   - BULLET
   - ATTACKING
   - ENEMY
+  - PlayerList
+  - Bullet_Text
+  - Ready_button
   layers:
   - Default
   - TransparentFX
