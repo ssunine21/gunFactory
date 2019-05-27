@@ -11,17 +11,19 @@ public class FlameGunFOV : MonoBehaviour
 	private Transform enemyTr;
 	private Transform playerTr;
 	private float flameGunDamage;
+	private FireCtrl fireCtrl;
 	public LayerMask enemyLayer;
 	public LayerMask obstacleLayer;
-
+	
 
 	private void Start() {
 		playerTr = GetComponent<Transform>();
+		fireCtrl = this.transform.root.GetComponent<FireCtrl>();
 		flameGunDamage = this.GetComponentInParent<Gun>()._bulletDamage;
 	}
 
 	private void Update() {
-		if ( isEnemy() && FireCtrl.init.isShotFlame)
+		if ( isEnemy() && fireCtrl.isShotFlame)
 			Debug.Log("d");
 	}
 
@@ -40,7 +42,7 @@ public class FlameGunFOV : MonoBehaviour
 			Vector3 dir = (enemyTr.position - playerTr.position).normalized;
 			
 			if ( Vector3.Angle(playerTr.forward, dir) < viewAngle * 0.5f ) {
-				if ( FireCtrl.init.isShotFlame ) {
+				if ( fireCtrl.isShotFlame ) {
 					Attack(coll);
 				}
 			}

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 [System.Serializable]
 public struct PlayerSfx {
@@ -10,7 +11,7 @@ public struct PlayerSfx {
 }
 
 
-public class FireCtrl : MonoBehaviour
+public class FireCtrl : NetworkBehaviour
 {
 	
 	[SerializeField]
@@ -27,7 +28,7 @@ public class FireCtrl : MonoBehaviour
 	//[SerializeField]
 	public GameObject[] bullets;
 
-
+	private PlayerCtrl playerCtrl;
 	private GameObject gunManager;
 	private List<GameObject> bulletList = new List<GameObject>();
 	private Gun currGun;
@@ -57,10 +58,11 @@ public class FireCtrl : MonoBehaviour
 	
 
 	private void Awake() {
-		if (init)
-			Destroy(gameObject);
+		playerCtrl = GetComponent<PlayerCtrl>();
+		//if ( init == null )
+		//	init = this;
 
-		init = this;
+		//init = this;
 
 	}
 
@@ -71,7 +73,7 @@ public class FireCtrl : MonoBehaviour
 		currTime = Time.time;
 		muzzleFlash = firePosTr.GetComponentInChildren<ParticleSystem>();
 		flameBullet = bullets[(int)WeaponType.FIREGUN].GetComponent<ParticleSystem>();
-		origin_moveSpeed = PlayerCtrl.init.moveSpeed;
+		origin_moveSpeed = playerCtrl.moveSpeed;
 
 		_audio = GetComponent<AudioSource>();
 
@@ -82,15 +84,15 @@ public class FireCtrl : MonoBehaviour
     void Update() {
 
 
-		if ( !isStop && Input.GetMouseButton(0) ) {
-			Fire();
+		if ( !isStop && Input.GetMouseButton(0) && (isLocalPlayer)) {
+			CmdFire();
 
 			if ( currGun.CurrBullet <= 0 ) {
 				StartCoroutine(Reloading());
 			}
 		}
 		else if ( Input.GetMouseButtonUp(0) ) {
-			PlayerCtrl.init.moveSpeed = origin_moveSpeed;
+			playerCtrl.moveSpeed = origin_moveSpeed;
 			if ( isFlameBullet ) {
 
 				isShotFlame = false;
@@ -100,11 +102,11 @@ public class FireCtrl : MonoBehaviour
 		}
     }
 
-
-	private void Fire() {
+	[Command]
+	private void CmdFire() {
 		if ( currTime + currGun._reloadSpeed > Time.time ) return;
 
-		PlayerCtrl.init.moveSpeed = origin_moveSpeed - decrease_moveSpeed;
+		playerCtrl.moveSpeed = origin_moveSpeed - decrease_moveSpeed;
 		currTime = Time.time;
 
 		if ( isFlameBullet ) {
@@ -123,6 +125,8 @@ public class FireCtrl : MonoBehaviour
 			if ( muzzleFlash ) muzzleFlash.Play();
 
 			FireSfx();
+
+			NetworkServer.Spawn(_bullet);
 		}
 
 		currGun.CurrBullet--;
@@ -193,7 +197,7 @@ public class FireCtrl : MonoBehaviour
 			//Debug.Log("ERROR! : bulletPool is empty");
 		}
 
-		currGun = bullets[PlayerCtrl.init.gunChangeIdx].GetComponent<Gun>();
+		currGun = bullets[playerCtrl.gunChangeIdx].GetComponent<Gun>();
 
 		if ( currGun.weaponType == WeaponType.FIREGUN ) {
 			isFlameBullet = true;
@@ -233,6 +237,6 @@ public class FireCtrl : MonoBehaviour
 		return null;
 	}
 	
-	public static FireCtrl init = null;
+	//public static FireCtrl init = null;
 
 }

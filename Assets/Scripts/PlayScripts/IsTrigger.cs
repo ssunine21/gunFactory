@@ -23,7 +23,7 @@ public class IsTrigger : MonoBehaviour
 
 			if ( Input.GetKeyDown(KeyCode.F) ) {
 				puzzle.gameObject.SetActive(true);
-				FireCtrl.init.IsStop = true;
+				other.GetComponent<FireCtrl>().IsStop = true;
 			}
 		}
 	}

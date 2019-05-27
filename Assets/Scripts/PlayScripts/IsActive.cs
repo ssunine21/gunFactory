@@ -15,7 +15,7 @@ public class IsActive : MonoBehaviour
 	public void Active() {
 		if ( isTrigger.Active ) {
 			doorAnim.SetBool("isOpen", true);
-			FireCtrl.init.IsStop = false;
+			//FireCtrl.init.IsStop = false;
 
 			Quest.init.QuestUpdate();
 		}

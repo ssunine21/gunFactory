@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 [System.Serializable]
 public class PlayerAnim {
@@ -11,7 +12,7 @@ public class PlayerAnim {
 	public AnimationClip runR;
 }
 
-public class PlayerCtrl : MonoBehaviour {
+public class PlayerCtrl : NetworkBehaviour {
 
 	delegate void Action();
 
@@ -34,6 +35,7 @@ public class PlayerCtrl : MonoBehaviour {
 	private float h_Value = 0.0f;
 	private float v_Value = 0.0f;
 
+	private FireCtrl fireCtrl;
 	private Vector3 movement;
 	private Transform playerTr;
 	private Rigidbody playerRigid;
@@ -50,9 +52,10 @@ public class PlayerCtrl : MonoBehaviour {
 
 
 	private void Awake() {
-		if (init == null)
-			init = this;
+		//if (init == null)
+		//	init = this;
 
+		fireCtrl = GetComponent<FireCtrl>();
 		playerTr = GetComponent<Transform>();
 		anim = GetComponent<Animation>();
 		playerRigid = GetComponent<Rigidbody>();
@@ -80,7 +83,11 @@ public class PlayerCtrl : MonoBehaviour {
 
 	}
 
+
 	private void FixedUpdate() {
+		if ( !isLocalPlayer ) return;
+
+
 		PlayerMove();
 		MouseMove();
 	}
@@ -103,7 +110,7 @@ public class PlayerCtrl : MonoBehaviour {
 		else if ( h_Value <= -0.1f ) anim.CrossFade(playerAnim.runL.name, 0.3f);
 		else anim.CrossFade(playerAnim.idle.name, 0.3f);
 	}
-
+	
 
 	private void MouseMove() {
 		ray = Camera.main.ScreenPointToRay((Input.mousePosition - mouseCorrection));
@@ -131,7 +138,7 @@ public class PlayerCtrl : MonoBehaviour {
 		gunChangeIdx = 0;
 		ChangeGun(gunChangeIdx);
 		GameManager.init.ChangeGunBoxSprite(gunChangeIdx);
-		FireCtrl.init.ReloadSfx();
+		fireCtrl.ReloadSfx();
 		Debug.Log("1");
 	}
 	private void Key_2() {
@@ -140,7 +147,7 @@ public class PlayerCtrl : MonoBehaviour {
 		gunChangeIdx = 1;
 		ChangeGun(gunChangeIdx);
 		GameManager.init.ChangeGunBoxSprite(gunChangeIdx);
-		FireCtrl.init.ReloadSfx();
+		fireCtrl.ReloadSfx();
 		Debug.Log("2");
 	}
 	private void Key_3() {
@@ -152,8 +159,8 @@ public class PlayerCtrl : MonoBehaviour {
 		Debug.Log("3");
 	}
 	private void Key_R() {
-		StartCoroutine(FireCtrl.init.Reloading());
-		FireCtrl.init.ReloadSfx();
+		StartCoroutine(fireCtrl.Reloading());
+		fireCtrl.ReloadSfx();
 	}
 	private void Key_Space() {
 		if ( currTime + dashCoolTime < Time.time ) {
@@ -165,10 +172,10 @@ public class PlayerCtrl : MonoBehaviour {
 
 	private void ChangeGun(int changeIdx) {
 
-		FireCtrl.init.weaponType = (WeaponType)changeIdx;
-		StartCoroutine(FireCtrl.init.ChangeBullet());
+		fireCtrl.weaponType = (WeaponType)changeIdx;
+		StartCoroutine(fireCtrl.ChangeBullet());
 	}
 
 
-	public static PlayerCtrl init;
+	//public static PlayerCtrl init;
 }
