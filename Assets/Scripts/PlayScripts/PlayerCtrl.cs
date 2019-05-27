@@ -62,6 +62,9 @@ public class PlayerCtrl : NetworkBehaviour {
 	}
 
 	private void Start() {
+		if ( isLocalPlayer )
+			SmoothFollow.init.FindTarget(this.transform);
+
 		keyDic = new Dictionary<KeyCode, Action> {
 			{KeyCode.Alpha1, Key_1 },
 			{KeyCode.Alpha2, Key_2 },

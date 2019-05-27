@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class SmoothFollow : NetworkBehaviour {
-	
+
+	[SerializeField]
 	private Transform target = null;
 	[SerializeField]
 	private float distance = 10.0f;
@@ -27,25 +28,18 @@ public class SmoothFollow : NetworkBehaviour {
 
 
 	private void Awake() {
+		init = this;
 		cameraTr = GetComponent<Transform>();
 	}
 
 
-	private void FindTarget() {
-		var players = GameObject.FindGameObjectsWithTag("Player");
-
-		foreach ( var player in players ) {
-			//if ( isLocalPlayer ) {
-				target = player.transform;
-			//	return;
-			//}
-		}
+	public void FindTarget(Transform target) {
+		this.target = target;
 	}
 
 	private void LateUpdate() {
 
 		if ( !target ) {
-			FindTarget();
 			return;
 		}
 
@@ -90,4 +84,6 @@ public class SmoothFollow : NetworkBehaviour {
 
 		return temp;
 	}
+
+	static public SmoothFollow init;
 }
