@@ -10,6 +10,7 @@ TagManager:
   - PlayerList
   - Bullet_Text
   - Ready_button
+  - Lobby_Player
   layers:
   - Default
   - TransparentFX

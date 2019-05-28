@@ -38,7 +38,7 @@ public class LobbyPlayerCustom : NetworkLobbyPlayer
 	}
 
 	public void SetReadyButton() {
-		if ( !isLocalPslayer ) return;
+		if ( !isLocalPlayer ) return;
 
 		readyButton.onClick.RemoveAllListeners();
 		if ( !readyToBegin )
