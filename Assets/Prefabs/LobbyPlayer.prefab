@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5659892860076801996}
   - component: {fileID: 5923586791437769478}
   - component: {fileID: 8256851420339220703}
+  - component: {fileID: 294798462460260091}
   m_Layer: 0
   m_Name: JobImg
   m_TagString: Untagged
@@ -34,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -219, y: 0}
-  m_SizeDelta: {x: 90, y: 90}
+  m_AnchoredPosition: {x: -267, y: -1.7537}
+  m_SizeDelta: {x: 159.5, y: 159.56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5923586791437769478
 CanvasRenderer:
@@ -74,6 +75,39 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &294798462460260091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2191677192781003407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!1 &4682107756872324239
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +186,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!1 &4682107756959472542
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +306,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 570.6, y: 100}
+  m_SizeDelta: {x: 867.1, y: 175}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4682107758034598429
 CanvasRenderer:
@@ -359,3 +393,4 @@ MonoBehaviour:
   ShowLobbyGUI: 1
   playerList: {fileID: 0}
   readyText: {fileID: 4682107756959472540}
+  job_Buttons: []

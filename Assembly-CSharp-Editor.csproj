@@ -63,9 +63,6 @@
     <Compile Include="Assets\Editor\FOVEditor.cs" />
     <Compile Include="Assets\zEffectExamples\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
     <None Include="Assets\zEffectExamples\Editor\PackageManagerAssembly\PackageImportList.txt" />
-    <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/xcvbn/Desktop/gunFactory.git/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>C:/Users/xcvbn/Desktop/gunFactory.git/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>

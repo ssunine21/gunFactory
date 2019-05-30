@@ -71,9 +71,6 @@
     <Compile Include="Assets\zfantasySpider\FSP_ContinuousRotation.cs" />
     <None Include="Assets\zSci-Fi Styled Modular Pack\Readme.txt" />
     <None Include="Assets\zEffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
-    <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/xcvbn/Desktop/gunFactory.git/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>C:/Users/xcvbn/Desktop/gunFactory.git/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>

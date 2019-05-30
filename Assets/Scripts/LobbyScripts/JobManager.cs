@@ -5,23 +5,33 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 
 public class JobManager : NetworkBehaviour {
-	private Button thisButton;
-	private Image jobImg;
+
+
+	public GameObject jobButton;
+	public Sprite[] jobImg;
 
 	[SerializeField]
 	private Image playerJobImg;
 
 	private void Awake() {
-		thisButton = GetComponent<Button>();
-		jobImg = GetComponent<Image>();
+		if ( init ) Destroy(init);
+		init = this;
 	}
-	
+
+
+	//[Command]
+	//public void CmdFalse() {
+	//	thisButton.interactable = false;
+	//}
+
 	[Command]
-	public void CmdChangeJob() {
-		if(!playerJobImg) playerJobImg = GameObject.FindGameObjectWithTag("Lobby_Player").transform.Find("JobImg").GetComponent<Image>();
+	public void CmdSpawnJobButton() {
+		for ( int i = 0; i < jobImg.Length; ++i ) {
+			GameObject spawnButton = Instantiate(jobButton, this.transform);
+			spawnButton.GetComponent<Image>().sprite = jobImg[i];
 
-
-		playerJobImg.sprite = jobImg.sprite;
+			NetworkServer.Spawn(spawnButton);
+		}
 	}
 
 	//public override void OnStartClient() {
@@ -29,5 +39,7 @@ public class JobManager : NetworkBehaviour {
 
 	//	playerJobImg = GameObject.FindGameObjectWithTag("Lobby_Player").transform.Find("JobImg").GetComponent<Image>();
 	//}
-	
+
+
+	static public JobManager init;
 }

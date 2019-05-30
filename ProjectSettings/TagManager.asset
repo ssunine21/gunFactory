@@ -11,6 +11,8 @@ TagManager:
   - Bullet_Text
   - Ready_button
   - Lobby_Player
+  - Job_button
+  - Canvas
   layers:
   - Default
   - TransparentFX

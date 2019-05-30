@@ -24,9 +24,9 @@ public class NetworkLobbyCustom : NetworkLobbyManager
 	}
 
 	
-	#region Lobby Enter and Exit
 	public override void OnLobbyClientEnter() {
 		base.OnLobbyClientEnter();
+		JobManager.init.CmdSpawnJobButton();
 		canvas.SetActive(true);
 	}
 
@@ -34,5 +34,4 @@ public class NetworkLobbyCustom : NetworkLobbyManager
 		base.OnLobbyClientExit();
 		canvas.SetActive(false);
 	}
-	#endregion
 }
