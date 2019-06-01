@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5659892860076801996}
   - component: {fileID: 5923586791437769478}
   - component: {fileID: 8256851420339220703}
-  - component: {fileID: 294798462460260091}
   m_Layer: 0
   m_Name: JobImg
   m_TagString: Untagged
@@ -75,39 +74,6 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!114 &294798462460260091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2191677192781003407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 0
-    i1: 0
-    i2: 0
-    i3: 0
-    i4: 0
-    i5: 0
-    i6: 0
-    i7: 0
-    i8: 0
-    i9: 0
-    i10: 0
-    i11: 0
-    i12: 0
-    i13: 0
-    i14: 0
-    i15: 0
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
 --- !u!1 &4682107756872324239
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,8 +243,10 @@ GameObject:
   - component: {fileID: 4682107758034598431}
   - component: {fileID: 4682107758034598429}
   - component: {fileID: 4682107758034598428}
-  - component: {fileID: 9166611680590808043}
   - component: {fileID: 7083440960800398314}
+  - component: {fileID: 3565395598640971147}
+  - component: {fileID: 9166611680590808043}
+  - component: {fileID: 7959202878045951145}
   m_Layer: 0
   m_Name: LobbyPlayer
   m_TagString: Lobby_Player
@@ -345,6 +313,50 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &7083440960800398314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4682107758034598430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac872b60de40164980e0d1081513ab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLobbyGUI: 1
+  playerList: {fileID: 0}
+  readyText: {fileID: 4682107756959472540}
+  jobImage: {fileID: 8256851420339220703}
+  job_Buttons: {fileID: 0}
+  jobButton: {fileID: 8879231266923744004, guid: 40f197d5b21a5c14e9957ef5ad355c33,
+    type: 3}
+  jobImg:
+  - {fileID: 21300000, guid: d2a7e4f53ec202c45b01bfebd97c9923, type: 3}
+  - {fileID: 21300000, guid: a4896591061377349a4be576e7d1f3a4, type: 3}
+  - {fileID: 21300000, guid: fd128823e547caf479fa39cdd6cc6770, type: 3}
+  - {fileID: 21300000, guid: 2923c0e47a0fc80448ebd89b50f64ef4, type: 3}
+--- !u!114 &3565395598640971147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4682107758034598430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23cc8886c69cf6145b2309f851b541d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  job_Buttons: {fileID: 0}
+  jobImg:
+  - {fileID: 21300000, guid: d2a7e4f53ec202c45b01bfebd97c9923, type: 3}
+  - {fileID: 21300000, guid: a4896591061377349a4be576e7d1f3a4, type: 3}
+  - {fileID: 21300000, guid: fd128823e547caf479fa39cdd6cc6770, type: 3}
+  - {fileID: 21300000, guid: 2923c0e47a0fc80448ebd89b50f64ef4, type: 3}
+  jobButton: {fileID: 8879231266923744004, guid: 40f197d5b21a5c14e9957ef5ad355c33,
+    type: 3}
 --- !u!114 &9166611680590808043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,8 +389,8 @@ MonoBehaviour:
     i14: 0
     i15: 0
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
---- !u!114 &7083440960800398314
+  m_LocalPlayerAuthority: 1
+--- !u!114 &7959202878045951145
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -387,10 +399,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4682107758034598430}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cac872b60de40164980e0d1081513ab7, type: 3}
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShowLobbyGUI: 1
-  playerList: {fileID: 0}
-  readyText: {fileID: 4682107756959472540}
-  job_Buttons: []
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1

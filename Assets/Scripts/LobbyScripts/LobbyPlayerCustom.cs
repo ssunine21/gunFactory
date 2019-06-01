@@ -8,27 +8,24 @@ public class LobbyPlayerCustom : NetworkLobbyPlayer
 {
 	public GameObject playerList;
 	public Text readyText;
-
-	private Image jobImage;
-	private Image temp_jobImage;
+	public Image jobImage;
+	
 	private Button readyButton;
 
-	[SerializeField]
-	private Button[] job_Buttons;
 
-
+	// 2. 로비에 입장, 아직 로컬플레이어 지정 안 됨
 	public override void OnClientEnterLobby() {
 		base.OnClientEnterLobby();
+		Debug.Log("OnClientEnterLobby");
+
 		playerList = GameObject.FindGameObjectWithTag("PlayerList");
 		readyButton = GameObject.FindGameObjectWithTag("Ready_button").GetComponent<Button>();
-		job_Buttons = GameObject.FindGameObjectWithTag("Job_button").GetComponentsInChildren<Button>();
-		jobImage = transform.Find("JobImg").GetComponent<Image>();
-		OnClientReady(false);
 		gameObject.transform.SetParent(playerList.transform, false);
-		SetPlayer();
+
+		OnClientReady(false);
 	}
 
-
+	// 3. 로컬플레이어 지정
 	public override void OnStartLocalPlayer() {
 		base.OnStartLocalPlayer();
 		Debug.Log("OnstartLocalPlayer");
@@ -36,31 +33,27 @@ public class LobbyPlayerCustom : NetworkLobbyPlayer
 		if ( !isLocalPlayer ) {
 			SetOtherPlayer();
 		}
-
-		SetReadyButton();
-		SetJobButton();
+		else SetPlayer();
 	}
 
 	private void SetPlayer() {
-		//Text playerName = gameObject.transform.GetChild(1).GetComponent<Text>();
-		//playerName.text = netId.ToString();
 
-		Debug.Log("isLocalPlayer");
+		Debug.Log("SetPlayer");
 
 		SetReadyButton();
 		SetJobButton();
 	}
 
 	private void SetOtherPlayer() {
-		Debug.Log("NotLocalPlayer");
+		Debug.Log("SetOtherPlayer");
 		readyButton.onClick.RemoveAllListeners();
-
-		foreach ( var jobButton in job_Buttons )
-			jobButton.onClick.RemoveAllListeners();
+		
 	}
 
 	private void SetReadyButton() {
 		if ( !isLocalPlayer ) return;
+
+		Debug.Log("SetReadyButton");
 
 		readyButton.onClick.RemoveAllListeners();
 
@@ -76,7 +69,9 @@ public class LobbyPlayerCustom : NetworkLobbyPlayer
 
 	public override void OnClientReady( bool readyState ) {
 		base.OnClientReady(readyState);
+		
 		Debug.Log("OnClientReady");
+
 		readyText.text = readyState == false ? ". . ." : "준비됨";
 
 		SetReadyButton();
@@ -86,19 +81,6 @@ public class LobbyPlayerCustom : NetworkLobbyPlayer
 		if ( !isLocalPlayer ) return;
 
 		Debug.Log("SetJobButton");
-
-		foreach( var jobButton in job_Buttons ) {
-			jobButton.onClick.RemoveAllListeners();
-			jobButton.onClick.AddListener(() => ChangeJob(jobButton.GetComponent<Image>()));
-		}
 	}
-
-	private void ChangeJob(Image job) {
-		if ( !isLocalPlayer ) return;
-
-		Debug.Log("changeImg");
-		jobImage.sprite = job.sprite;
-
-		//job.GetComponent<JobManager>().CmdFalse();
-	}
+	
 }
