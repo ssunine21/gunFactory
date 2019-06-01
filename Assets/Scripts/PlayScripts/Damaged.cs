@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class Damaged : MonoBehaviour
 {
@@ -25,5 +26,10 @@ public class Damaged : MonoBehaviour
 
 	private void DisplayHpbar() {
 		hpBar.fillAmount = (currHp / initHp);
+	}
+
+	[PunRPC]
+	public void ApplyUpdatedHealth(float newHealth) {
+		currHp = newHealth;
 	}
 }

@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 {
+	public GameObject playerPrefab;
+	public Transform[] spawnPosition;
 	public Sprite[] gunSprite;
 	private Transform[] enemy_spawnPoint;
 	//private Transform[] enemy_SpawnPoint;
@@ -17,6 +20,15 @@ public class GameManager : MonoBehaviour
 	private int maxEnemy = 0;
 	private bool isGameOver = false;
 
+	public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info ) {
+		if ( stream.IsWriting ) {
+
+		}
+		else {
+
+		}
+	}
+
 	private void Awake() {
 		if ( init == null ) init = this;
 		else Destroy(this.gameObject);
@@ -26,8 +38,25 @@ public class GameManager : MonoBehaviour
 
 	private void Start() {
 		enemy_spawnPoint = GameObject.Find("SpawnPointGroup").GetComponentsInChildren<Transform>();
+
+		Vector3 randomSpawnPos = spawnPosition[Random.Range(0, spawnPosition.Length)].position;
+		randomSpawnPos.y = 0;
+
 		StartCoroutine(SpawnEnemy());
 		maxEnemy = enemy_spawnPoint.Length - 1;
+
+		PhotonNetwork.Instantiate(playerPrefab.name, randomSpawnPos, Quaternion.identity);
+	}
+
+	private void Update() {
+		if ( Input.GetKeyDown(KeyCode.Escape) ) {
+			PhotonNetwork.LeaveRoom();
+		}
+	}
+
+	//방에서 나갈 때 실행
+	public override void OnLeftRoom() {
+		SceneManager.LoadScene("LobbyScene");
 	}
 
 	IEnumerator SpawnEnemy() {

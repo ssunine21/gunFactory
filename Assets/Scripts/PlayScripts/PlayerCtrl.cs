@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
-using UnityEngine.Networking;
 
 [System.Serializable]
 public class PlayerAnim {
@@ -12,7 +11,7 @@ public class PlayerAnim {
 	public AnimationClip runR;
 }
 
-public class PlayerCtrl : NetworkBehaviour {
+public class PlayerCtrl : MonoBehaviourPun {
 
 	delegate void Action();
 
@@ -52,9 +51,6 @@ public class PlayerCtrl : NetworkBehaviour {
 
 
 	private void Awake() {
-		//if (init == null)
-		//	init = this;
-
 		fireCtrl = GetComponent<FireCtrl>();
 		playerTr = GetComponent<Transform>();
 		anim = GetComponent<Animation>();
@@ -62,7 +58,7 @@ public class PlayerCtrl : NetworkBehaviour {
 	}
 
 	private void Start() {
-		if ( isLocalPlayer )
+		if ( photonView.IsMine )
 			SmoothFollow.init.FindTarget(this.transform);
 
 		keyDic = new Dictionary<KeyCode, Action> {
@@ -88,7 +84,7 @@ public class PlayerCtrl : NetworkBehaviour {
 
 
 	private void FixedUpdate() {
-		if ( !isLocalPlayer ) return;
+		if ( !photonView.IsMine ) return;
 
 
 		PlayerMove();

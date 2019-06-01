@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Networking;
+using Photon.Pun;
 
 [System.Serializable]
 public struct PlayerSfx {
@@ -11,7 +11,7 @@ public struct PlayerSfx {
 }
 
 
-public class FireCtrl : NetworkBehaviour
+public class FireCtrl : MonoBehaviourPun
 {
 	
 	[SerializeField]
@@ -59,11 +59,6 @@ public class FireCtrl : NetworkBehaviour
 
 	private void Awake() {
 		playerCtrl = GetComponent<PlayerCtrl>();
-		//if ( init == null )
-		//	init = this;
-
-		//init = this;
-
 	}
 
 	void Start() {
@@ -81,10 +76,12 @@ public class FireCtrl : NetworkBehaviour
 	}
 	
 
+
     void Update() {
 
+		if ( !photonView.IsMine ) return;
 
-		if ( !isStop && Input.GetMouseButton(0) && (isLocalPlayer)) {
+		if ( !isStop && Input.GetMouseButton(0)) {
 			CmdFire();
 
 			if ( currGun.CurrBullet <= 0 ) {
@@ -101,8 +98,7 @@ public class FireCtrl : NetworkBehaviour
 			}
 		}
     }
-
-	[Command]
+	
 	private void CmdFire() {
 		if ( currTime + currGun._reloadSpeed > Time.time ) return;
 
@@ -119,8 +115,7 @@ public class FireCtrl : NetworkBehaviour
 				_bullet.transform.position = firePosTr.position;
 				_bullet.transform.rotation = firePosTr.rotation;
 				_bullet.SetActive(true);
-
-				NetworkServer.Spawn(_bullet);
+				
 			}
 			if ( cartridge ) cartridge.Play();
 			if ( muzzleFlash ) muzzleFlash.Play();

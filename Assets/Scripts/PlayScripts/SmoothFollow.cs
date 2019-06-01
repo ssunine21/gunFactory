@@ -1,12 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
-public class SmoothFollow : NetworkBehaviour {
+public class SmoothFollow : MonoBehaviour {
 
 	[SerializeField]
-	private Transform target = null;
+	public Transform target = null;
 	[SerializeField]
 	private float distance = 10.0f;
 	[SerializeField]

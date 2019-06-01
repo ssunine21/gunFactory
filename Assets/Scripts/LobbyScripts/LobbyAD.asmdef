@@ -1,7 +1,15 @@
 {
     "name": "LobbyAD",
     "references": [
-        "PlayAD"
+        "PlayAD",
+        "PhotonChat",
+        "PhotonRealtime",
+        "PhotonUnityNetworking",
+        "PhotonUnityNetworking.Editor",
+        "PhotonUnityNetworking.Utilities",
+        "PhotonUnityNetworking.Utilities.Culling.Editor",
+        "PhotonUnityNetworking.Utilities.PhotonPlayer.Editor",
+        "PhotonWebSocket"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],
