@@ -319,6 +319,12 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
+    <Reference Include="Photon3Unity3D">
+      <HintPath>C:/Users/xcvbn/Desktop/gunFactory.git/Assets/Photon/PhotonLibs/Photon3Unity3D.dll</HintPath>
+    </Reference>
+    <Reference Include="websocket-sharp">
+      <HintPath>C:/Users/xcvbn/Desktop/gunFactory.git/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
+    </Reference>
     <Reference Include="PackageManagerAssembly">
       <HintPath>C:/Users/xcvbn/Desktop/gunFactory.git/Assets/zEffectExamples/Editor/PackageManagerAssembly/PackageManagerAssembly.dll</HintPath>
     </Reference>
@@ -336,12 +342,6 @@
     </Reference>
     <Reference Include="UnityEditor.Purchasing">
       <HintPath>C:/Users/xcvbn/Desktop/gunFactory.git/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll</HintPath>
-    </Reference>
-    <Reference Include="Photon3Unity3D">
-      <HintPath>C:/Users/xcvbn/Desktop/gunFactory.git/Assets/Photon/PhotonLibs/Photon3Unity3D.dll</HintPath>
-    </Reference>
-    <Reference Include="websocket-sharp">
-      <HintPath>C:/Users/xcvbn/Desktop/gunFactory.git/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.3.12f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -703,18 +703,6 @@
       <Project>{7D3BAECF-8CE3-4851-728A-7DC0F37DC4A0}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
-    <ProjectReference Include="MainAD.csproj">
-      <Project>{B4D3C5E7-646B-0DCA-0D03-35FA4900A822}</Project>
-      <Name>MainAD</Name>
-    </ProjectReference>
-    <ProjectReference Include="LobbyAD.csproj">
-      <Project>{7922C22B-E053-CB72-ED23-1B545CCEE2DD}</Project>
-      <Name>LobbyAD</Name>
-    </ProjectReference>
-    <ProjectReference Include="PlayAD.csproj">
-      <Project>{CD56F27B-8812-255F-B94A-5E3485B8F8BD}</Project>
-      <Name>PlayAD</Name>
-    </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj">
       <Project>{F7A5D641-9FB6-AD6F-87CC-E7AF090C48F2}</Project>
       <Name>PhotonUnityNetworking.Utilities.PhotonPlayer.Editor</Name>
@@ -722,6 +710,10 @@
     <ProjectReference Include="PhotonUnityNetworking.Utilities.csproj">
       <Project>{5BC19B55-1839-EC53-C94A-0EE4A00D808A}</Project>
       <Name>PhotonUnityNetworking.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="MainAD.csproj">
+      <Project>{B4D3C5E7-646B-0DCA-0D03-35FA4900A822}</Project>
+      <Name>MainAD</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonWebSocket.csproj">
       <Project>{9BA0B15B-EC86-7FA5-E512-431A8F70549F}</Project>
@@ -738,6 +730,14 @@
     <ProjectReference Include="PhotonChat.csproj">
       <Project>{1233C64A-205C-A95E-9124-C1D534AEFBF1}</Project>
       <Name>PhotonChat</Name>
+    </ProjectReference>
+    <ProjectReference Include="LobbyAD.csproj">
+      <Project>{7922C22B-E053-CB72-ED23-1B545CCEE2DD}</Project>
+      <Name>LobbyAD</Name>
+    </ProjectReference>
+    <ProjectReference Include="PlayAD.csproj">
+      <Project>{CD56F27B-8812-255F-B94A-5E3485B8F8BD}</Project>
+      <Name>PlayAD</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.Culling.Editor.csproj">
       <Project>{71BD638B-6AC9-6FAE-DBE3-EC11E6398EFC}</Project>

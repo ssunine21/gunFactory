@@ -1,4 +1,6 @@
-﻿using Photon.Pun;
+﻿using System.Collections;
+using System.Collections.Generic;
+using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,20 +10,41 @@ public class LobbyManager : MonoBehaviourPunCallbacks {
 
 	public Text connectionInfoText;
 	public Button joinButton;
+	public GameObject canvas;
 
 	//매치메이킹 시도
 	private void Start() {
 		PhotonNetwork.GameVersion = gameVersion;
 		PhotonNetwork.ConnectUsingSettings();
-
+		PhotonNetwork.AutomaticallySyncScene = true;
+		connectionInfoText.gameObject.SetActive(true);
 		joinButton.interactable = false;
 		connectionInfoText.text = "서버 접속 중...";
 	}
 
+	private void Update() {
+		if ( Input.GetKeyDown(KeyCode.A) ) {
+			if( canvas.GetComponentInChildren<Button>().interactable == false )
+				canvas.GetComponentInChildren<Button>().interactable = true;
+			else
+				canvas.GetComponentInChildren<Button>().interactable = false;
+		}
+	}
+
+
 	//서버에 접속한 경우
 	public override void OnConnectedToMaster() {
 		joinButton.interactable = true;
+		canvas.SetActive(true);
 		connectionInfoText.text = "서버 연결 됨";
+
+		StartCoroutine(SetActiveObject(connectionInfoText, 2.0f));
+		
+	}
+
+	private IEnumerator SetActiveObject(Text obj, float delay_time) {
+		yield return new WaitForSeconds(delay_time);
+		obj.gameObject.SetActive(false);
 	}
 
 	//서버 끊긴 경우
@@ -55,6 +78,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks {
 	//참가 성공
 	public override void OnJoinedRoom() {
 		connectionInfoText.text = "방 참가 성공";
-		PhotonNetwork.LoadLevel("PlayScene");
+		PhotonNetwork.LoadLevel("LobbyScene");
 	}
+
+
 }

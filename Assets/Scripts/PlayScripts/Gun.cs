@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public enum WeaponType {
 	GUN = 0,
@@ -9,7 +10,7 @@ public enum WeaponType {
 
 }
 
-public class Gun : MonoBehaviour {
+public class Gun : MonoBehaviourPun {
 	public WeaponType weaponType;
 	public float _bulletSpeed = 800f;
 	public float _bulletDamage = 20f;
@@ -38,6 +39,7 @@ public class Gun : MonoBehaviour {
 
 	private void OnEnable() {
 		rid.AddForce(bulletTr.forward * _bulletSpeed);
+		Destroy(this.gameObject, 2.0f);
 	}
 
 	private void OnDisable() {

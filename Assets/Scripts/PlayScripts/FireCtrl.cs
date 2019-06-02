@@ -27,6 +27,7 @@ public class FireCtrl : MonoBehaviourPun
 
 	//[SerializeField]
 	public GameObject[] bullets;
+	public GameObject pistol;
 
 	private PlayerCtrl playerCtrl;
 	private GameObject gunManager;
@@ -82,7 +83,7 @@ public class FireCtrl : MonoBehaviourPun
 		if ( !photonView.IsMine ) return;
 
 		if ( !isStop && Input.GetMouseButton(0)) {
-			CmdFire();
+			Fire();
 
 			if ( currGun.CurrBullet <= 0 ) {
 				StartCoroutine(Reloading());
@@ -99,7 +100,7 @@ public class FireCtrl : MonoBehaviourPun
 		}
     }
 	
-	private void CmdFire() {
+	private void Fire() {
 		if ( currTime + currGun._reloadSpeed > Time.time ) return;
 
 		playerCtrl.moveSpeed = origin_moveSpeed - decrease_moveSpeed;
@@ -110,16 +111,18 @@ public class FireCtrl : MonoBehaviourPun
 			flameBullet.Play();
 		}
 		else {
-			var _bullet = GetBullet();
-			if ( _bullet != null ) {
-				_bullet.transform.position = firePosTr.position;
-				_bullet.transform.rotation = firePosTr.rotation;
-				_bullet.SetActive(true);
-				
-			}
+			//var _bullet = GetBullet();
+			//if ( _bullet != null ) {
+			//	_bullet.transform.position = firePosTr.position;
+			//	_bullet.transform.rotation = firePosTr.rotation;
+			//	_bullet.SetActive(true);
+
+			//}
+			PhotonNetwork.Instantiate(pistol.name, firePosTr.position, firePosTr.rotation);
+
 			if ( cartridge ) cartridge.Play();
 			if ( muzzleFlash ) muzzleFlash.Play();
-
+			
 			FireSfx();
 
 		}

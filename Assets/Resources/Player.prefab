@@ -825,6 +825,7 @@ MonoBehaviour:
   - {fileID: 4983402549349220823, guid: b4a07a1df062edd47ac2e7ba3b341979, type: 3}
   - {fileID: 7128092310181399010, guid: b61efeab69e01174fbfb12ddcaa877b5, type: 3}
   - {fileID: 2630520264308586442, guid: cdb4d31a67a479446b2c52b4ef94399e, type: 3}
+  pistol: {fileID: 4983402549349220823, guid: b4a07a1df062edd47ac2e7ba3b341979, type: 3}
   cartridge: {fileID: 1588199301029405707}
   firePosTr: {fileID: 1492104539034707105}
   currbullet_Text: {fileID: 0}

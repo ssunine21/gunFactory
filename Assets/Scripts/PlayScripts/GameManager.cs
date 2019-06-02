@@ -17,8 +17,11 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 	public Image mainWeapon_Image;
 	public float reSpawn = 2f;
 
+	public bool isSoloPlay = false;
+
 	private int maxEnemy = 0;
 	private bool isGameOver = false;
+
 
 	public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info ) {
 		if ( stream.IsWriting ) {
@@ -30,22 +33,26 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 	}
 
 	private void Awake() {
-		if ( init == null ) init = this;
-		else Destroy(this.gameObject);
+		if ( init != null ) Destroy(init);
+		init = this;
 
 		DontDestroyOnLoad(this.gameObject);
 	}
 
 	private void Start() {
 		enemy_spawnPoint = GameObject.Find("SpawnPointGroup").GetComponentsInChildren<Transform>();
-
 		Vector3 randomSpawnPos = spawnPosition[Random.Range(0, spawnPosition.Length)].position;
 		randomSpawnPos.y = 0;
 
 		StartCoroutine(SpawnEnemy());
 		maxEnemy = enemy_spawnPoint.Length - 1;
 
-		PhotonNetwork.Instantiate(playerPrefab.name, randomSpawnPos, Quaternion.identity);
+		if ( isSoloPlay ) {
+			var player = Instantiate(playerPrefab, randomSpawnPos, Quaternion.identity);
+			SmoothFollow.init.target = player.transform;
+		}
+		else
+			PhotonNetwork.Instantiate(playerPrefab.name, randomSpawnPos, Quaternion.identity);
 	}
 
 	private void Update() {
