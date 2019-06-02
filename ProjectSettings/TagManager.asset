@@ -13,6 +13,7 @@ TagManager:
   - Lobby_Player
   - Job_button
   - Canvas
+  - Room
   layers:
   - Default
   - TransparentFX
