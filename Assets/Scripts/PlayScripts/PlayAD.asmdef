@@ -1,6 +1,7 @@
 {
     "name": "PlayAD",
     "references": [
+        "MainAD",
         "PhotonChat",
         "PhotonRealtime",
         "PhotonUnityNetworking",

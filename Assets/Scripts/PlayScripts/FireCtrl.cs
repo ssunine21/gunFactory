@@ -35,6 +35,7 @@ public class FireCtrl : MonoBehaviourPun
 	private Gun currGun;
 	private ParticleSystem flameBullet;
 	private AudioSource _audio;
+	private Animator anim;
 
 	public ParticleSystem cartridge = null;
 	public Transform firePosTr;
@@ -45,6 +46,7 @@ public class FireCtrl : MonoBehaviourPun
 	public float changingBulletTime = 0.5f;
 	public bool isFlameBullet = false;
 	public bool isShotFlame = false;
+	
 
 	private bool isStop = false;
 	public bool IsStop {
@@ -69,6 +71,7 @@ public class FireCtrl : MonoBehaviourPun
 		currTime = Time.time;
 		muzzleFlash = firePosTr.GetComponentInChildren<ParticleSystem>();
 		flameBullet = bullets[(int)WeaponType.FIREGUN].GetComponent<ParticleSystem>();
+		anim = GetComponent<Animator>();
 		origin_moveSpeed = playerCtrl.moveSpeed;
 
 		_audio = GetComponent<AudioSource>();
@@ -118,6 +121,7 @@ public class FireCtrl : MonoBehaviourPun
 			//	_bullet.SetActive(true);
 
 			//}
+			anim.SetTrigger("isFire");
 			PhotonNetwork.Instantiate(pistol.name, firePosTr.position, firePosTr.rotation);
 
 			if ( cartridge ) cartridge.Play();

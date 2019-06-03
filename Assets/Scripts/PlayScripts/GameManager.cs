@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 	public GameObject gunBackground;
 	public Image mainWeapon_Image;
 	public float reSpawn = 2f;
+	public int jobidx = 0;
 
 	public bool isSoloPlay = false;
 
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 		enemy_spawnPoint = GameObject.Find("SpawnPointGroup").GetComponentsInChildren<Transform>();
 		Vector3 randomSpawnPos = spawnPosition[Random.Range(0, spawnPosition.Length)].position;
 		randomSpawnPos.y = 0;
+
 
 		StartCoroutine(SpawnEnemy());
 		maxEnemy = enemy_spawnPoint.Length - 1;

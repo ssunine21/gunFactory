@@ -776,6 +776,9 @@ MonoBehaviour:
   roomListTr: {fileID: 1524957290}
   roomText: {fileID: 371073138}
   maxPlayer: {fileID: 2097343620}
+  jobPrefab: {fileID: 8879231266923744004, guid: 40f197d5b21a5c14e9957ef5ad355c33,
+    type: 3}
+  jobSpawnTr: {fileID: 88235790}
 --- !u!4 &297084658
 Transform:
   m_ObjectHideFlags: 0

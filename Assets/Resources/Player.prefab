@@ -803,6 +803,7 @@ MonoBehaviour:
     runR: {fileID: 7400000, guid: f65e8694646404294b2de66b5827d6e5, type: 2}
   anim: {fileID: 0}
   gunChangeIdx: 0
+  job: 0
   mousePos: {x: 0, y: 0, z: 0}
 --- !u!114 &1492104539273707267
 MonoBehaviour:
@@ -987,7 +988,7 @@ Animator:
   m_GameObject: {fileID: 1492104538697936341}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 30cc89a3ba9703140b4e21386332188a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1010,8 +1011,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
-  m_SynchronizeParameters: []
-  m_SynchronizeLayers: []
+  m_SynchronizeParameters:
+  - Type: 9
+    SynchronizeType: 1
+    Name: isFire
+  m_SynchronizeLayers:
+  - SynchronizeType: 2
+    LayerIndex: 0
 --- !u!114 &6594461428287348056
 MonoBehaviour:
   m_ObjectHideFlags: 0

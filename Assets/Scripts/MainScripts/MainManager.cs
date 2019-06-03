@@ -1,35 +1,54 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using Photon.Pun;
-using UnityEngine.SceneManagement;
 
-public class MainManager : MonoBehaviourPunCallbacks {
+public class MainManager : MonoBehaviourPunCallbacks, IPunObservable {
 
-	public GameObject jobPrefab;
-	public Sprite[] jobImgs;
-	public Transform jobSpawnTr;
+	public GameObject LobbyPlayer;
+	public Transform playerList;
+	public int jobidx = 0;
 
-    private void Start(){
+	private int readyCount = 1;
+
+	public static MainManager init {
+		get {
+			if ( m_init == null ) m_init = FindObjectOfType<MainManager>();
+
+			return m_init;
+		}
+	}
+
+	public void OnPhotonSerializeView (PhotonStream stream, PhotonMessageInfo info ) {
+		if ( stream.IsWriting ) {
+			stream.SendNext(readyCount);
+		}
+		else {
+			readyCount = (int)stream.ReceiveNext();
+		}
+	}
+
+	private void Start() {
 		PhotonNetwork.IsMessageQueueRunning = true;
+		Debug.Log("dd");
 
-		OnSpawnJob();
-    }
-	
-	private void OnSpawnJob() {
-		for ( int i = 0; i < jobImgs.Length; ++i ) {
-			Debug.Log("Spawn");
-			var jobObj = PhotonNetwork.Instantiate(jobPrefab.name, jobSpawnTr.position, Quaternion.identity);
+		//PhotonNetwork.Instantiate(LobbyPlayer.name, Vector3.zero, Quaternion.identity).transform.SetParent(playerList);
+	}
 
-			jobObj.GetComponent<Image>().sprite = jobImgs[i];
-			jobObj.transform.SetParent(jobSpawnTr);
+	public void OnReady() {
+		if ( PhotonNetwork.IsMasterClient ) {
+			Debug.Log(readyCount);
+			//if ( PhotonNetwork.CountOfPlayers < readyCount )
+
+			DontDestroyOnLoad(this.gameObject);
+			PhotonNetwork.LoadLevel("PlayScene");
+		}
+		else {
+			readyCount += 1;
+
+			Debug.Log(readyCount);
 		}
 	}
 
-	private void Update() {
-		if ( Input.GetKeyDown(KeyCode.Escape) ) {
-			SceneManager.LoadScene("MainScene");
-		}
-	}
+	private static MainManager m_init;
 }

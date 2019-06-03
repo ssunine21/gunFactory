@@ -18,12 +18,22 @@ public class IsTrigger : MonoBehaviour
 	}
 
 	private void OnTriggerStay( Collider other ) {
-		if ( other.gameObject.CompareTag("Player") && Quest.init.QuestIdx >= 1) {
+		if ( other.gameObject.CompareTag("Player") ) {//Quest.init.QuestIdx >= 1) {
+			if ( other.GetComponent<PlayerCtrl>().job != JOB.ENGINNER ) return;
+
 			help_F.gameObject.SetActive(true);
 
-			if ( Input.GetKeyDown(KeyCode.F) ) {
-				puzzle.gameObject.SetActive(true);
-				other.GetComponent<FireCtrl>().IsStop = true;
+			//if ( Input.GetKeyDown(KeyCode.F) ) {
+			//	puzzle.gameObject.SetActive(true);
+			//	other.GetComponent<FireCtrl>().IsStop = true;
+			//}
+		}
+	}
+
+	private void Update() {
+		if(Input.GetKeyDown(KeyCode.F)){
+			if( help_F.gameObject.activeSelf ) {
+				TriggerPlay();
 			}
 		}
 	}

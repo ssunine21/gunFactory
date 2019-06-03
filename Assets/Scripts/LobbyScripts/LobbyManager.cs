@@ -122,10 +122,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks {
 			roomData.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() => OnClickRoom(roomData.roomName));
 		}
 	}
-
+	
 	private void OnClickRoom(string roomName ) {
 		Debug.Log("OnClickRoom");
 		PhotonNetwork.JoinRoom(roomName, null);
+
 	}
 
 }

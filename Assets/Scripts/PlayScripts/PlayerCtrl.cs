@@ -11,6 +11,11 @@ public class PlayerAnim {
 	public AnimationClip runR;
 }
 
+public enum JOB {
+	CAP = 0,
+	ENGINNER,
+}
+
 public class PlayerCtrl : MonoBehaviourPun {
 
 	delegate void Action();
@@ -40,6 +45,7 @@ public class PlayerCtrl : MonoBehaviourPun {
 	private Rigidbody playerRigid;
 	private float dashCoolTime = 3f;
 	private float currTime = 0;
+	public JOB job;
 
 	private Dictionary<KeyCode, Action> keyDic;
 
@@ -68,6 +74,17 @@ public class PlayerCtrl : MonoBehaviourPun {
 			{KeyCode.R, Key_R },
 			{KeyCode.Space, Key_Space }
 		};
+
+		switch ( MainManager.init.jobidx ) {
+			case 0:
+				job = JOB.CAP;
+				Debug.Log(job);
+				break;
+			case 1:
+				job = JOB.ENGINNER;
+				Debug.Log(job);
+				break;
+		}
 	}
 
 	private void Update() {
